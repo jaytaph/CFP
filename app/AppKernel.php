@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new Cfp\UserBundle\CfpUserBundle(),
             new Cfp\ConferenceBundle\CfpConferenceBundle(),
+            new Cfp\PageBundle\CfpPageBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

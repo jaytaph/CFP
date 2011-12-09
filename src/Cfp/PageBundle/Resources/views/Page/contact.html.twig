@@ -1,0 +1,24 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Contact{% endblock%}
+
+{% block body %}
+    <header>
+        <h1>Contact Cfp</h1>
+    </header>
+
+    <p>Want to contact Cfp? Here is your chance...</p>
+
+    <form action="{{ path('CfpPageBundle_contact') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_errors(form) }}
+
+        {{ form_row(form.name) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.subject) }}
+        {{ form_row(form.body) }}
+
+        {{ form_rest(form) }}
+
+        <input type="submit" value="Submit" />
+    </form>
+{% endblock %}

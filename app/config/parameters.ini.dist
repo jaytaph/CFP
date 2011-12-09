@@ -17,3 +17,5 @@
     locale            = en
 
     secret            = ThisTokenIsNotSoSecretChangeIt
+
+    emails.contact_email = info@example.org

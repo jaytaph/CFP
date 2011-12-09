@@ -1,12 +1,17 @@
-CfpConferenceBundle_show_all:
-    pattern:  /conferences
-    defaults: { _controller: CfpConferenceBundle:Default:showAll }
+CfpPageBundle_homepage:
+    pattern:  /
+    defaults: { _controller: CfpPageBundle:Default:index }
     requirements:
         _method:  GET
 
-CfpConferenceBundle_show:
-    pattern:  /conference/{tag}
-    defaults: { _controller: CfpConferenceBundle:Default:show }
+CfpPageBundle_about:
+    pattern:  /page/about
+    defaults: { _controller: CfpPageBundle:Page:about }
     requirements:
         _method:  GET
-        tag: \w+
+
+CfpPageBundle_contact:
+    pattern:  /page/contact
+    defaults: { _controller: CfpPageBundle:Page:contact }
+    requirements:
+        _method:  GET|POST

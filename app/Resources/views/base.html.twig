@@ -11,7 +11,7 @@
         {% block navigation %}
             <nav>
                 <ul class="navigation">
-                    {#<li><a href="{{ path('CfpPageBundle_homepage') }}">Home</a></li>#}
+                    <li><a href="{{ path('CfpPageBundle_homepage') }}">Home</a></li>
                     <li><a href="{{ path('CfpConferenceBundle_show_all') }}">Conferences</a></li>
                     <li><a href="#">Open CFP</a></li>
 
@@ -20,10 +20,10 @@
                     <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
 {% else %}
                     <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
-                    <li><a href="{{ path('fos_user_register') }}">Register</a></li>
+                    <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
 {% endif %}
-                    {#<li><a href="{{ path('CfpPageBundle_about') }}">About</a></li>#}
-                    {#<li><a href="{{ path('CfpPageBundle_contact') }}">Contact</a></li>#}
+                    <li><a href="{{ path('CfpPageBundle_about') }}">About</a></li>
+                    <li><a href="{{ path('CfpPageBundle_contact') }}">Contact</a></li>
                 </ul>
             </nav>
         {% endblock %}

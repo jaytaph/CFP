@@ -1,0 +1,12 @@
+CfpConferenceBundle_show_all:
+    pattern:  /conferences
+    defaults: { _controller: CfpConferenceBundle:Default:showAll }
+    requirements:
+        _method:  GET
+
+CfpConferenceBundle_show:
+    pattern:  /conference/{tag}
+    defaults: { _controller: CfpConferenceBundle:Default:show }
+    requirements:
+        _method:  GET
+        tag: \w+
