@@ -64,3 +64,13 @@
 [FOSUserBundle]
     git=git://github.com/FriendsOfSymfony/FOSUserBundle.git
     target=bundles/FOS/UserBundle
+
+[buzz]
+    git=http://github.com/kriswallsmith/Buzz.git
+
+[geocoder]
+    git=http://github.com/willdurand/Geocoder.git
+
+[IvoryGoogleMapBundle]
+    git=http://github.com/egeloen/IvoryGoogleMapBundle.git
+    target=/bundles/Ivory/GoogleMapBundle
