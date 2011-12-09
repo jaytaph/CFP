@@ -4,12 +4,21 @@
 // read http://symfony.com/doc/current/book/installation.html#configuration-and-setup for more information
 //umask(0000);
 
-// this check prevents access to debug front controllers that are deployed by accident to production servers.
-// feel free to remove this, extend it, or make something more sophisticated.
-if (!in_array(@$_SERVER['REMOTE_ADDR'], array(
-    '127.0.0.1',
-    '::1',
-))) {
+
+// Add your own regular expression IP match here
+$ips = array();
+$ips[] = '127\.0\.0\.1';            // Local host
+$ips[] = '::1';
+$ips[] = '192\.168\.\d+\.\d+';      // 192.168.x.x
+
+$allowed = false;
+foreach ($ips as $ip) {
+    if (preg_match("/^".$ip."$/", @$_SERVER['REMOTE_ADDR'])) {
+        $allowed = true;
+    }
+}
+
+if (! $allowed) {
     header('HTTP/1.0 403 Forbidden');
     exit('You are not allowed to access this file. Check '.basename(__FILE__).' for more information.');
 }
