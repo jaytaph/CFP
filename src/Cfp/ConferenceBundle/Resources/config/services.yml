@@ -1,0 +1,7 @@
+parameters:
+#    cfp_conference.example.class: Cfp\ConferenceBundle\Example
+
+services:
+#    cfp_conference.example:
+#        class: %cfp_conference.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

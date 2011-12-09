@@ -1,0 +1,20 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Show ALL the conferences!{% endblock %}
+
+{% block body %}
+    <table class="conference">
+        <tr>
+            <th>Name</th>
+            <th>Date start</th>
+            <th>Cfp start</th>
+        </tr>
+        {% for conference in conferences %}
+        <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
+            <td><a href="{{ path('CfpConferenceBundle_show', { 'tag': conference.tag }) }}">{{ conference.name }}</a></td>
+            <td>{{ conference.dtstart|date('l, F j, Y H:I:s') }}</td>
+            <td>{{ conference.cfpstart|date('l, F j, Y H:I:s') }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

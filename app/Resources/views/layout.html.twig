@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block notice %}
+    {% if app.session.hasFlash('notice') %}
+        <div class="flash-notice">
+            {{ app.session.flash('notice') }}
+        </div>
+    {% endif %}
+{% endblock %}

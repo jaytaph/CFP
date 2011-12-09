@@ -1,3 +1,7 @@
+CfpConferenceBundle:
+    resource: "@CfpConferenceBundle/Resources/config/routing.yml"
+    prefix:   /
+
 CfpUserBundle:
     resource: "@CfpUserBundle/Resources/config/routing.yml"
     prefix:   /
@@ -20,3 +24,5 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+
+
