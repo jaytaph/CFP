@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
+            new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new Cfp\UserBundle\CfpUserBundle(),
             new Cfp\ConferenceBundle\CfpConferenceBundle(),
         );

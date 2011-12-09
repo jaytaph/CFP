@@ -1,3 +1,0 @@
-CfpUserBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: CfpUserBundle:Default:index }

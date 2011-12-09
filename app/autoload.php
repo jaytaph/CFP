@@ -18,6 +18,7 @@ $loader->registerNamespaces(array(
     'Buzz'             => __DIR__.'/../vendor',
     'Geocoder'         => __DIR__.'/../vendor/Geocoder/src',
     'Ivory'            => __DIR__.'/../vendor/bundles',
+    'Ornicar'          => __DIR__.'/../vendor/bundles',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',
