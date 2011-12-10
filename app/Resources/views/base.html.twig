@@ -3,11 +3,17 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+
+        {% block stylesheets %}
+            <link href="{{ asset('/css/main.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
+
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-    <div class="top">
+    <section id="wrapper">
+        <header id="header">
+            <div class="top">
         {% block navigation %}
             <nav>
                 <ul class="navigation">
@@ -33,7 +39,9 @@
                 </ul>
             </nav>
         {% endblock %}
-    </div>
+            </div>
+        </header>
+    </section>
 
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
