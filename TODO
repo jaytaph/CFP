@@ -2,7 +2,7 @@ Todo:
 [X] User should be able to register and login/logout
 [ ] User should be able to view all his talks submitted
 [X] Everyone should be able view all conferences (sorted by latest, open cfp etc)
-[ ] Let user create multiple biographies (php biography, linux biography etc)
+[X] Let user create multiple biographies (php biography, linux biography etc)
 [ ] Let user add / update talks
         - multiple type of talks (workshops, talk, estimated time)
         - links to joind.in / slideshare / etc
