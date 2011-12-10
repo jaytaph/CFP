@@ -8,12 +8,16 @@
             <th>Name</th>
             <th>Date start</th>
             <th>Cfp start</th>
+            <th>Cfp end</th>
+            <th>Cfp status</th>
         </tr>
         {% for conference in conferences %}
         <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
             <td><a href="{{ path('CfpConferenceBundle_show', { 'tag': conference.tag }) }}">{{ conference.name }}</a></td>
-            <td>{{ conference.dtstart|date('l, F j, Y H:I:s') }}</td>
-            <td>{{ conference.cfpstart|date('l, F j, Y H:I:s') }}</td>
+            <td>{{ conference.dtstart|date('F j, Y') }}</td>
+            <td>{{ conference.cfpstart|date('F j, Y') }}</td>
+            <td>{{ conference.cfpend|date('F j, Y') }}</td>
+            <td>{{ cfp_status(conference.cfpstart, conference.cfpend, true) }}</td>
         </tr>
         {% endfor %}
     </table>
