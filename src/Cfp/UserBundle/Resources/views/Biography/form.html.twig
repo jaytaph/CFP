@@ -1,0 +1,33 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Biography{% endblock%}
+
+{% block body %}
+    <header>
+        <h1>Biography</h1>
+    </header>
+
+{% if mutation_type == "add" %}
+    <p>Add a new biography</p>
+    {% set formaction = path('CfpUserBundle_add_biography') %}
+    {% set submit = 'Add' %}
+{% else %}
+    <p>Update your biography</p>
+    {% set formaction = path('CfpUserBundle_edit_biography', {'id' : biography.id }) %}
+    {% set submit = 'Update' %}
+{% endif %}
+
+    <div class="formDialog">
+    <form action="{{ formaction }}" method="post" {{ form_enctype(form) }}>
+        {{ form_errors(form) }}
+
+        {{ form_row(form.description) }}
+
+        {{ form_row(form.biography) }}
+
+        {{ form_rest(form) }}
+
+        <input type="submit" value="{{ submit }}" />
+    </form>
+    </div>
+{% endblock %}

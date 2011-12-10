@@ -19,8 +19,43 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Cfp\UserBundle\Entity\Biography", mappedBy="owner")
+     */
+    protected $biographies;
+
     public function __construct()
     {
         parent::__construct();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Add biographies
+     *
+     * @param Cfp\UserBundle\Entity\Biography $biographies
+     */
+    public function addBiography(\Cfp\UserBundle\Entity\Biography $biographies)
+    {
+        $this->biographies[] = $biographies;
+    }
+
+    /**
+     * Get biographies
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getBiographies()
+    {
+        return $this->biographies;
     }
 }

@@ -1,49 +1,73 @@
+<!-- app/Resources/views/base.html.twig -->
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta http-equiv="Content-Type" content="text/html"; charset=utf-8" />
+        <title>{% block title %}wyg{% endblock %} - CallForPapers</title>
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="{{ asset('js/common.js') }}"></script>
 
         {% block stylesheets %}
-            <link href="{{ asset('/css/main.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('css/screen.css') }}" type="text/css" rel="stylesheet" />
         {% endblock %}
-
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-    <section id="wrapper">
-        <header id="header">
-            <div class="top">
-        {% block navigation %}
-            <nav>
-                <ul class="navigation">
-                    <li><a href="{{ path('CfpPageBundle_homepage') }}">Home</a></li>
-                    <li><a href="{{ path('CfpConferenceBundle_show_all') }}">Conferences</a></li>
-                    <li><a href="{{ path('CfpConferenceBundle_show_cfp')}}">Open CFP</a></li>
-                    <li><a href="{{ path('CfpConferenceBundle_show_next')}}">Pending CFP</a></li>
 
-{% if app.user is not empty and is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <img src="{{ gravatar(app.user.email, 25) }}">
-                    <li><a href="#">My bio</a></li>
-                    <li><a href="#">My CFPs</a></li>
-                    <li><a href="{{ path('CfpUserBundle_show_talks') }}">My talks</a></li>
-                    <li><a href="{{ path('fos_user_profile_show') }}">My profile</a></li>
+        <section id="wrapper">
+            <header id="header">
+                <div class="top">
+                    {% block navigation %}
+                        <nav>
+                            <ul class="navigation">
+                                <li><a href="{{ path('CfpPageBundle_homepage') }}">Home</a></li>
+                                <li><a href="{{ path('CfpConferenceBundle_show_all') }}">Conferences</a></li>
+                                <li><a href="{{ path('CfpConferenceBundle_show_cfp')}}">Open CFP</a></li>
+                                <li><a href="{{ path('CfpConferenceBundle_show_next')}}">Pending CFP</a></li>
 
-                    <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
-{% else %}
-                    <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
-                    <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
-{% endif %}
-                    <li><a href="{{ path('CfpPageBundle_about') }}">About</a></li>
-                    <li><a href="{{ path('CfpPageBundle_contact') }}">Contact</a></li>
-                </ul>
-            </nav>
-        {% endblock %}
+            {% if app.user is not empty and is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <img src="{{ gravatar(app.user.email, 25) }}">
+                                <li><a href="{{ path('CfpUserBundle_show_my_biographies') }}">My biographies</a></li>
+                                <li><a href="#">My CFPs</a></li>
+                                <li><a href="#">My talks</a></li>
+                                <li><a href="{{ path('fos_user_profile_show') }}">My profile</a></li>
+
+                                <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+            {% else %}
+                                <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                                <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+            {% endif %}
+                                <li><a href="{{ path('CfpPageBundle_about') }}">About</a></li>
+                                <li><a href="{{ path('CfpPageBundle_contact') }}">Contact</a></li>
+                            </ul>
+                        </nav>
+                    {% endblock %}
+                </div>
+
+                <hgroup>
+                    <h2>{% block blog_title %}<a href="#">Call For Papers</a>{% endblock %}</h2>
+                    <h3>{% block blog_tagline %}<a href="#">Submitting your papers</a>{% endblock %}</h3>
+                </hgroup>
+            </header>
+
+            <section class="main-col">
+                {% block notice %}{% endblock %}
+                {% block body %}{% endblock %}
+            </section>
+
+            <div id="footer">
+                {% block footer %}
+                    Copyright (C) {{ "now"|date("Y") }} A-lot-of-people - All rights reserved
+                {% endblock %}
             </div>
-        </header>
-    </section>
+        </section>
 
-        {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        {% block onload %}{% endblock %}
     </body>
 </html>
