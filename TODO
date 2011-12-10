@@ -1,0 +1,22 @@
+Todo:
+[X] User should be able to register and login/logout
+[ ] User should be able to view all his talks submitted
+[ ] Everyone should be able view all conferences (sorted by latest, open cfp etc)
+[ ] Let user create multiple biographies (php biography, linux biography etc)
+[ ] Let user add / update talks
+        - multiple type of talks (workshops, talk, estimated time)
+        - links to joind.in / slideshare / etc
+[ ] Let user create conference
+[ ] Let user add other users as "conference host"
+[ ] Let user add talks to conferences (only during cfp opening)
+[ ] Send email to user that talk was submitted
+[ ] Let "conference hosts" vote for talks
+[ ] User should be able to view all talks submitted to conferences
+[ ] Add ability for user to add multiple speakers to talk (by email-address?)
+
+Low prio:
+[ ] Add option to create a public voting (one up/down vote per user per talk)
+[ ] Let public comment on public cfp's (like on confoo12)
+[ ] Have the option that public votes are done without knowing the speaker (just title+abstract)
+[ ] Let conference hosts export cfp information on CSV or other format
+
