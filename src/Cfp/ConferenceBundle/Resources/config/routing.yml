@@ -1,17 +1,25 @@
-CfpPageBundle_homepage:
-    pattern:  /
-    defaults: { _controller: CfpPageBundle:Default:index }
+CfpConferenceBundle_show_all:
+    pattern:  /conferences/all
+    defaults: { _controller: CfpConferenceBundle:Default:showAll }
     requirements:
         _method:  GET
 
-CfpPageBundle_about:
-    pattern:  /page/about
-    defaults: { _controller: CfpPageBundle:Page:about }
+CfpConferenceBundle_show_cfp:
+    pattern:  /conferences/cfp
+    defaults: { _controller: CfpConferenceBundle:Default:showCfp }
     requirements:
         _method:  GET
 
-CfpPageBundle_contact:
-    pattern:  /page/contact
-    defaults: { _controller: CfpPageBundle:Page:contact }
+CfpConferenceBundle_show_next:
+    pattern:  /conferences/next
+    defaults: { _controller: CfpConferenceBundle:Default:showNextOpenCfp }
     requirements:
-        _method:  GET|POST
+        _method:  GET
+
+
+CfpConferenceBundle_show:
+    pattern:  /conference/{tag}
+    defaults: { _controller: CfpConferenceBundle:Default:show }
+    requirements:
+        _method:  GET
+        tag: \w+

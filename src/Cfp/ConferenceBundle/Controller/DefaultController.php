@@ -59,4 +59,24 @@ class DefaultController extends Controller
         ));
     }
 
+    public function showCfpAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $conferences = $em->getRepository('CfpConferenceBundle:Conference')->getOpenCfps();
+
+        return $this->render('CfpConferenceBundle:Default:showall.html.twig', array(
+            'conferences' => $conferences,
+        ));
+    }
+
+    public function showNextOpenCfpAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $conferences = $em->getRepository('CfpConferenceBundle:Conference')->getNextByCfp();
+
+        return $this->render('CfpConferenceBundle:Default:showall.html.twig', array(
+            'conferences' => $conferences,
+        ));
+    }
+
 }
