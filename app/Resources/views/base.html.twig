@@ -31,11 +31,11 @@
                                 <li><a href="{{ path('CfpConferenceBundle_show_next')}}">Pending CFP</a></li>
 
             {% if app.user is not empty and is_granted('IS_AUTHENTICATED_FULLY') %}
-                                <img src="{{ gravatar(app.user.email, 25) }}">
                                 <li><a href="{{ path('CfpUserBundle_show_my_biographies') }}">My biographies</a></li>
                                 <li><a href="#">My CFPs</a></li>
                                 <li><a href="{{ path('CfpUserBundle_show_my_talks') }}">My talks</a></li>
                                 <li><a href="{{ path('fos_user_profile_show') }}">My profile</a></li>
+                                <img src="{{ gravatar(app.user.email, 25) }}">
 
                                 <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
             {% else %}
