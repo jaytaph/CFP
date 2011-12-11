@@ -1,25 +1,3 @@
-CfpConferenceBundle_show_all:
-    pattern:  /conferences/all
-    defaults: { _controller: CfpConferenceBundle:Default:showAll }
-    requirements:
-        _method:  GET
-
-CfpConferenceBundle_show_cfp:
-    pattern:  /conferences/cfp
-    defaults: { _controller: CfpConferenceBundle:Default:showCfp }
-    requirements:
-        _method:  GET
-
-CfpConferenceBundle_show_next:
-    pattern:  /conferences/next
-    defaults: { _controller: CfpConferenceBundle:Default:showNextOpenCfp }
-    requirements:
-        _method:  GET
-
-
-CfpConferenceBundle_show:
-    pattern:  /conference/{tag}
-    defaults: { _controller: CfpConferenceBundle:Default:show }
-    requirements:
-        _method:  GET
-        tag: \w+
+CfgConferenceBundle_Conferences:
+    resource: "@CfpConferenceBundle/Resources/config/routing/conference.yml"
+    prefix:   /

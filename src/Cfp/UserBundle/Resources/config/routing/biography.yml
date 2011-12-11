@@ -1,0 +1,25 @@
+CfpUserBundle_show_my_biographies:
+    pattern:  /biographies
+    defaults: { _controller: CfpUserBundle:Biography:showAllFromUser }
+    requirements:
+        _method:  GET
+
+CfpUserBundle_show_biography:
+    pattern:  /biography/{id}
+    defaults: { _controller: CfpUserBundle:Biography:show }
+    requirements:
+        _method:  GET
+        id: \d+
+
+CfpUserBundle_edit_biography:
+    pattern:  /biography/{id}/edit
+    defaults: { _controller: CfpUserBundle:Biography:edit }
+    requirements:
+        _method:  GET|POST
+        id: \d+
+
+CfpUserBundle_add_biography:
+    pattern:  /biography/new
+    defaults: { _controller: CfpUserBundle:Biography:add }
+    requirements:
+        _method:  GET|POST
