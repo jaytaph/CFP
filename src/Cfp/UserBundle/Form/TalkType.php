@@ -12,7 +12,7 @@ class TalkType extends AbstractType
         $builder
             ->add('title')
             ->add('abstract')
-            ->add('type')
+            ->add('type', 'talktype')
             ->add('slides_url')
             ->add('joindin_url')
             ->add('owners')

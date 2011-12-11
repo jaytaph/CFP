@@ -2,6 +2,7 @@ parameters:
 #    cfp_user.example.class: Cfp\UserBundle\Example
 
 services:
-#    cfp_user.example:
-#        class: %cfp_user.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    talktype:
+        class: Cfp\UserBundle\Form\Extension\talkTypeChoiceList
+        tags:
+            - {name: form.type, alias: talktype}
