@@ -1,0 +1,24 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Cfp list{% endblock %}
+
+{% block body %}
+    <table class="cfp">
+        <tr>
+            <th>Conference</th>
+            <th>Talk</th>
+            <th>Type</th>
+        </tr>
+        {% for entity in entities %}
+            <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
+                <td>{{ entity.conference.name }}</td>
+                <td><a href="{{ path('CfpConferenceBundle_show_cfp', { 'id': entity.id }) }}">{{ entity.talk.title }}</a></td>
+                <td>{{ entity.talk.type }}</td>
+                <td>
+                    [ <a href="{{ path('CfpConferenceBundle_edit_cfp', { 'id': entity.id }) }}">edit</a> ]
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

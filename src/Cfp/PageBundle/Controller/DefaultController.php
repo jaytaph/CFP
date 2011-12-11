@@ -10,6 +10,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->redirect($this->generateUrl('CfpConferenceBundle_show_all'));
+        return $this->redirect($this->generateUrl('CfpConferenceBundle_show_conferences_all'));
     }
 }

@@ -1,6 +1,6 @@
 Todo:
 [X] User should be able to register and login/logout
-[ ] User should be able to view all his talks submitted
+[X] User should be able to view all his talks submitted
 [X] Everyone should be able view all conferences (sorted by latest, open cfp etc)
 [X] Let user create multiple biographies (php biography, linux biography etc)
 [X] Let user add / update talks
@@ -13,6 +13,10 @@ Todo:
 [ ] Let "conference hosts" vote for talks (cfp-vote-entity)
 [ ] User should be able to view all talks submitted to conferences
 [ ] Add ability for user to add multiple speakers to talk (by email-address?)
+[ ] Make sure resources are secured by acl/authorization
+    - Talks & bios can only be edited by owner
+    - Talks & bios can only be viewed by owner or conference hosts
+[ ] When we use our security context, make sure when it's expired (ie: string("anon.")), things don't break.
 
 [ ] Use generic way of CRUD:
         X Every route in separate Resources/config/routing/*.yml

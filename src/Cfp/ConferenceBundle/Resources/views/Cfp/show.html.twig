@@ -1,0 +1,31 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}{{ entity.title }}{% endblock %}
+
+{% block body %}
+    <article class="cfp">
+            <header>
+                <h2>{{ entity.talk.title }}</h2>
+            </header>
+        <div>
+            <h3 >Remark:</h3>
+            <p>{{ entity.remark }}</p>
+        </div>
+
+        <div>
+            <h3 >Conference:</h3>
+            <p>{{ entity.conference.title }}</p>
+        </div>
+
+        <div>
+          [ <a href="{{ path('CfpConferenceBundle_edit_cfp', { 'id': entity.id }) }}">Edit talk</a> ]
+          [ <a href="{{ path('CfpConferenceBundle_show_my_cfps') }}">Back to the list</a> ]
+            <form action="{{ path('CfpConferenceBundle_delete_cfp', { 'id': entity.id }) }}" method="post">
+                {{ form_widget(delete_form) }}
+                <button type="submit">Delete</button>
+            </form>
+
+        </div>
+    </article>
+{% endblock %}
+

@@ -13,7 +13,7 @@
         </tr>
         {% for conference in conferences %}
         <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
-            <td><a href="{{ path('CfpConferenceBundle_show', { 'tag': conference.tag }) }}">{{ conference.name }}</a></td>
+            <td><a href="{{ path('CfpConferenceBundle_show_conference', { 'tag': conference.tag }) }}">{{ conference.name }}</a></td>
             <td>{{ conference.dtstart|date('F j, Y') }}</td>
             <td>{{ conference.cfpstart|date('F j, Y') }}</td>
             <td>{{ conference.cfpend|date('F j, Y') }}</td>
