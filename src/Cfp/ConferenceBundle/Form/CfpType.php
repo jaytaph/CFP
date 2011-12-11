@@ -5,7 +5,7 @@ namespace Cfp\ConferenceBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class TalkType extends AbstractType
+class CfpType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
@@ -17,6 +17,6 @@ class TalkType extends AbstractType
 
     public function getName()
     {
-        return 'cfp_conferencebundle_talktype';
+        return 'cfp_conferencebundle_cfptype';
     }
 }

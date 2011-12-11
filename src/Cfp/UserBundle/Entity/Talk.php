@@ -54,6 +54,11 @@ class Talk
     {
         $this->owners = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
+    public function __toString() {
+        return $this->getTitle();
+    }
+
     
     /**
      * Get id

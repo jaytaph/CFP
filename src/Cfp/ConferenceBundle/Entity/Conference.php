@@ -16,6 +16,10 @@ class Conference
         $this->setDtCreated(new \DateTime());
     }
 
+    public function __toString() {
+        return $this->getName();
+    }
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
