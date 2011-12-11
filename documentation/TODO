@@ -1,4 +1,5 @@
 Todo:
+=====
 [X] User should be able to register and login/logout
 [X] User should be able to view all his talks submitted
 [X] Everyone should be able view all conferences (sorted by latest, open cfp etc)
@@ -8,10 +9,11 @@ Todo:
         X links to joind.in / slideshare / etc
 [ ] Let user create conference
 [ ] Let user add other users as "conference host"
-[ ] Let user add talks to conferences (only during cfp opening)
+[-] Let user add talks to conferences
+        - (only during cfp opening)
 [ ] Send email to user that talk was submitted
 [ ] Let "conference hosts" vote for talks (cfp-vote-entity)
-[-] User should be able to view all talks submitted to conferences
+[X] User should be able to view all talks submitted to conferences
 [ ] Add ability for user to add multiple speakers to talk (by email-address?)
 [ ] Make sure resources are secured by acl/authorization
     - Talks & bios can only be edited by owner
@@ -20,16 +22,17 @@ Todo:
 
 
 Bugs & issues:
+==============
 [ ] Use generic way of CRUD:
         X Every route in separate Resources/config/routing/*.yml
         - CRUD has separate edit/update new/create actions
         - showall.html.twig should be index.html.twig
         - form.html.twig should be edit.html.twig
 [ ] Fix inline @TODO's
-[ ] in cfp/cfpBundle/CfpTalkController, do we really need cfp_id? If so, how do make this more generic?
 
 
 Low prio:
+=========
 [ ] Add option to create a public voting (one up/down vote per user per talk)
 [ ] Let public comment on public cfp's (like on confoo12)
 [ ] Have the option that public votes are done without knowing the speaker (just title+abstract)
