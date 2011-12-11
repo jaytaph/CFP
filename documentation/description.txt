@@ -1,0 +1,25 @@
+User
+====
+- user can add multiple biographies
+- user can add multiple talks
+
+Submitting to a conference CfP
+==============================
+- Can only take place when the CfP is open for the conference
+- User submits a biography to the conference
+- User selects a talk to submit
+- User add additional information if needed (remarks etc)
+- Talk can be edited or retracted while CfP is open
+- User should be able to see all submission ever done, plus statistics on acceptance / rejections etc
+
+Conferences
+===========
+- User can add conference, user will become conference host
+- Multiple users can become conference host
+- Conference must be accepted by admins (?)
+- When CfP is open, users will be allowed to add talks
+- Conference hosts are allowed to view bio's and talks (but only the ones that are submitted!)
+- When cfp is closed, conferences hosts are allowed to +1, 0 or -1 vote talks
+-   -1 votes should be commented?
+- Statistics page with all votes are available
+- Conference hosts should be able to mass-mail acceptance / rejections mails

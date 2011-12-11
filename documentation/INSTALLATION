@@ -1,0 +1,8 @@
+Simple installation
+===================
+
+- git clone
+- run "php bin/vendors install" to install all 3rd party bundles (and symfony itself)
+- run "php app/console doctrine:schema:create"
+- Create initial user via "php app/console fos:user:create"
+- There is no example database yet, so you have to create your own :(
