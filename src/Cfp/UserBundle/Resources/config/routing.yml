@@ -1,3 +1,7 @@
+CfgUserBundle_Talks:
+    resource: "@CfpUserBundle/Resources/config/routing/talk.yml"
+    prefix:   /my
+
 # Display all biographies the user has created
 CfpUserBundle_show_my_biographies:
     pattern:  /my/biographies

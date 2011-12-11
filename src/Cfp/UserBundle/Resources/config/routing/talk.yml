@@ -1,0 +1,30 @@
+CfpUserBundle_show_my_talks:
+    pattern:  /talks
+    defaults: { _controller: "CfpUserBundle:Talk:index" }
+
+CfpUserBundle_show_talk:
+    pattern:  /talk/{id}/show
+    defaults: { _controller: "CfpUserBundle:Talk:show" }
+
+CfpUserBundle_new_talk:
+    pattern:  /talk/new
+    defaults: { _controller: "CfpUserBundle:Talk:new" }
+
+CfpUserBundle_create_talk:
+    pattern:  /talk/create
+    defaults: { _controller: "CfpUserBundle:Talk:create" }
+    requirements: { _method: post }
+
+CfpUserBundle_edit_talk:
+    pattern:  /talk/{id}/edit
+    defaults: { _controller: "CfpUserBundle:Talk:edit" }
+
+CfpUserBundle_update_talk:
+    pattern:  /talk/{id}/update
+    defaults: { _controller: "CfpUserBundle:Talk:update" }
+    requirements: { _method: post }
+
+CfpUserBundle_delete_talk:
+    pattern:  /talk/{id}/delete
+    defaults: { _controller: "CfpUserBundle:Talk:delete" }
+    requirements: { _method: post }

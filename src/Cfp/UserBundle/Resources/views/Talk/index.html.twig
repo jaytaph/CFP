@@ -1,0 +1,27 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Talk list{% endblock %}
+
+{% block body %}
+    <table class="talk">
+        <tr>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+        {% for entity in entities %}
+            <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
+                <td><a href="{{ path('CfpUserBundle_show_talk', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
+                <td>{{ entity.type }}</td>
+                <td>
+                    [ <a href="{{ path('CfpUserBundle_edit_talk', { 'id': entity.id }) }}">edit</a> ]
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <div>
+      [ <a href="{{ path('CfpUserBundle_new_talk') }}">Create a new talk</a> ]
+    </div>
+
+{% endblock %}
