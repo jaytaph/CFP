@@ -5,7 +5,7 @@
 {% block body %}
     <article class="cfp">
             <header>
-                <h2>{{ entity.talk.title }}</h2>
+                <h2>{{ entity.conference.title }}</h2>
             </header>
         <div>
             <h3 >Remark:</h3>
@@ -18,9 +18,9 @@
         </div>
 
         <div>
-          [ <a href="{{ path('CfpConferenceBundle_edit_cfp', { 'id': entity.id }) }}">Edit talk</a> ]
-          [ <a href="{{ path('CfpConferenceBundle_show_my_cfps') }}">Back to the list</a> ]
-            <form action="{{ path('CfpConferenceBundle_delete_cfp', { 'id': entity.id }) }}" method="post">
+          [ <a href="{{ path('CfpCfpBundle_edit_cfp', { 'id': entity.id }) }}">Edit cfp</a> ]
+          [ <a href="{{ path('CfpCfpBundle_show_my_cfps') }}">Back to the list</a> ]
+            <form action="{{ path('CfpCfpBundle_delete_cfp', { 'id': entity.id }) }}" method="post">
                 {{ form_widget(delete_form) }}
                 <button type="submit">Delete</button>
             </form>

@@ -24,6 +24,11 @@ class User extends BaseUser
      */
     protected $biographies;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Cfp\CfpBundle\Entity\Cfp", mappedBy="user")
+     */
+    protected $cfps;
+
     public function __construct()
     {
         parent::__construct();
@@ -57,5 +62,25 @@ class User extends BaseUser
     public function getBiographies()
     {
         return $this->biographies;
+    }
+
+    /**
+     * Add cfps
+     *
+     * @param Cfp\CfpBundle\Entity\Cfp $cfps
+     */
+    public function addCfp(\Cfp\CfpBundle\Entity\Cfp $cfps)
+    {
+        $this->cfps[] = $cfps;
+    }
+
+    /**
+     * Get cfps
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getCfps()
+    {
+        return $this->cfps;
     }
 }

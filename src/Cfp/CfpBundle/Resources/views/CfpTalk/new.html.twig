@@ -1,0 +1,16 @@
+<h1>CfpTalk creation</h1>
+
+<form action="{{ path('CfpCfpBundle_create_cfp_talk', {'cfp_id': 1}) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('CfpCfpBundle_show_my_cfp_talks', {'cfp_id': 1}) }}">
+            Back to the list
+        </a>
+    </li>
+</ul>

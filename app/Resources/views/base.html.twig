@@ -32,7 +32,7 @@
 
             {% if app.user is not empty and is_granted('IS_AUTHENTICATED_FULLY') %}
                                 <li><a href="{{ path('CfpUserBundle_show_my_biographies') }}">My biographies</a></li>
-                                <li><a href="{{ path('CfpConferenceBundle_show_my_cfps') }}">My CFPs</a></li>
+                                <li><a href="{{ path('CfpCfpBundle_show_my_cfps') }}">My CFPs</a></li>
                                 <li><a href="{{ path('CfpUserBundle_show_my_talks') }}">My talks</a></li>
                                 <li><a href="{{ path('fos_user_profile_show') }}">My profile</a></li>
                                 <img src="{{ gravatar(app.user.email, 25) }}">

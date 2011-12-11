@@ -1,6 +1,6 @@
 <?php
 
-namespace Cfp\ConferenceBundle\Form;
+namespace Cfp\CfpBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
@@ -10,13 +10,11 @@ class CfpType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('remarks', 'textarea')
-            ->add('talk')
-            ->add('conference');
+            ->add('remarks', 'textarea');
     }
 
     public function getName()
     {
-        return 'cfp_conferencebundle_cfptype';
+        return 'cfp_cfpbundle_cfptype';
     }
 }

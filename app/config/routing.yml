@@ -1,3 +1,7 @@
+CfpCfpBundle:
+    resource: "@CfpCfpBundle/Resources/config/routing.yml"
+    prefix:   /
+
 CfpConferenceBundle:
     resource: "@CfpConferenceBundle/Resources/config/routing.yml"
     prefix:   /

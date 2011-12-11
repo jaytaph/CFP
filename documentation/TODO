@@ -18,12 +18,16 @@ Todo:
     - Talks & bios can only be viewed by owner or conference hosts
 [ ] When we use our security context, make sure when it's expired (ie: string("anon.")), things don't break.
 
+
+Bugs & issues:
 [ ] Use generic way of CRUD:
         X Every route in separate Resources/config/routing/*.yml
         - CRUD has separate edit/update new/create actions
         - showall.html.twig should be index.html.twig
         - form.html.twig should be edit.html.twig
 [ ] Fix inline @TODO's
+[ ] in cfp/cfpBundle/CfpTalkController, do we really need cfp_id? If so, how do make this more generic?
+
 
 Low prio:
 [ ] Add option to create a public voting (one up/down vote per user per talk)

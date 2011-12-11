@@ -1,7 +1,3 @@
 CfgConferenceBundle_Conferences:
     resource: "@CfpConferenceBundle/Resources/config/routing/conference.yml"
     prefix:   /
-
-CfgConferenceBundle_Cfps:
-    resource: "@CfpConferenceBundle/Resources/config/routing/cfp.yml"
-    prefix:   /my

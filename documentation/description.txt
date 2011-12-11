@@ -23,3 +23,10 @@ Conferences
 -   -1 votes should be commented?
 - Statistics page with all votes are available
 - Conference hosts should be able to mass-mail acceptance / rejections mails
+
+
+
+Problems
+========
+When we have a multi-host talk, and one of the users submits a talk to a conference, what do we show when a
+conference host will look at the talk? Does it see all the users? But which bio's?

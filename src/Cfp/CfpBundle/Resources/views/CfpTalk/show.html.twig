@@ -1,0 +1,41 @@
+<h1>CfpTalk</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Remarks</th>
+            <td>{{ entity.remarks }}</td>
+        </tr>
+        <tr>
+            <th>Submitted on</th>
+            <td>{{ entity.dtcreated|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Talk</th>
+            <td>{{ entity.talk.title }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('CfpCfpBundle_show_my_cfp_talks', {'cfp_id': 1}) }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('CfpCfpBundle_edit_cfp_talk', { 'cfp_id': 1, 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('CfpCfpBundle_delete_cfp_talk', { 'cfp_id': 1, 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>

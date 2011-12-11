@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Cfp\UserBundle\CfpUserBundle(),
             new Cfp\ConferenceBundle\CfpConferenceBundle(),
             new Cfp\PageBundle\CfpPageBundle(),
+            new Cfp\CfpBundle\CfpCfpBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

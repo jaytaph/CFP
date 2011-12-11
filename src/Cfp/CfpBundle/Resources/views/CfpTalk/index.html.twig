@@ -1,0 +1,41 @@
+<h1>CfpTalk list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Remarks</th>
+            <th>Title</th>
+            <th>Submitted</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('CfpCfpBundle_show_cfp_talk', { 'cfp_id': 1, 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.remarks }}</td>
+            <td>{{ entity.talk.title }}</td>
+            <td>{% if entity.dtcreated %}{{ entity.dtcreated|date('Y-m-d H:i:s') }}{% endif%}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('CfpCfpBundle_show_cfp_talk', { 'cfp_id': 1, 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('CfpCfpBundle_edit_cfp_talk', { 'cfp_id': 1, 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('CfpCfpBundle_new_cfp_talk', {'cfp_id': 1}) }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>

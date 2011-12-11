@@ -1,0 +1,7 @@
+CfpCfpBundle_Cfp:
+    resource: "@CfpCfpBundle/Resources/config/routing/cfp.yml"
+    prefix:   /my
+
+CfpCfpBundle_CfpTalk:
+    resource: "@CfpCfpBundle/Resources/config/routing/cfptalk.yml"
+    prefix:   /my/cfp/{cfp_id}

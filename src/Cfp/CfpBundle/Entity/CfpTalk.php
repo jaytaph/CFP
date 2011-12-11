@@ -1,14 +1,14 @@
 <?php
-// src/Cfp/ConferenceBundle/Entity/Cfp.php
+// src/Cfp/CfpBundle/Entity/CfpTalk.php
 
-namespace Cfp\ConferenceBundle\Entity;
+namespace Cfp\CfpBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="Cfp\ConferenceBundle\Repository\CfpRepository")
- * @ORM\Table(name="cfp")
+ * @ORM\Entity(repositoryClass="Cfp\CfpBundle\Repository\CfpTalkRepository")
+ * @ORM\Table(name="cfptalk")
  */
-class Cfp
+class CfpTalk
 {
     public function __construct()
     {
@@ -22,10 +22,11 @@ class Cfp
      */
     protected $id;
 
+
     /**
-     * @ORM\ManyToOne(targetEntity="Cfp\ConferenceBundle\Entity\Conference")
+     * @ORM\ManyToOne(targetEntity="Cfp\CfpBundle\Entity\Cfp", inversedBy="id")
      */
-    protected $conference;
+    protected $cfp;
 
     /**
      * @ORM\ManyToOne(targetEntity="Cfp\UserBundle\Entity\Talk")
@@ -41,6 +42,7 @@ class Cfp
      * @ORM\Column(type="datetime")
      */
     protected $dt_created;
+
 
     /**
      * Get id
@@ -93,23 +95,23 @@ class Cfp
     }
 
     /**
-     * Set conference
+     * Set cfp
      *
-     * @param Cfp\ConferenceBundle\Entity\Conference $conference
+     * @param Cfp\CfpBundle\Entity\Cfp $cfp
      */
-    public function setConference(\Cfp\ConferenceBundle\Entity\Conference $conference)
+    public function setCfp(\Cfp\CfpBundle\Entity\Cfp $cfp)
     {
-        $this->conference = $conference;
+        $this->cfp = $cfp;
     }
 
     /**
-     * Get conference
+     * Get cfp
      *
-     * @return Cfp\ConferenceBundle\Entity\Conference 
+     * @return Cfp\CfpBundle\Entity\Cfp 
      */
-    public function getConference()
+    public function getCfp()
     {
-        return $this->conference;
+        return $this->cfp;
     }
 
     /**
@@ -130,25 +132,5 @@ class Cfp
     public function getTalk()
     {
         return $this->talk;
-    }
-
-    /**
-     * Add conference
-     *
-     * @param Cfp\ConferenceBundle\Entity\Conference $conference
-     */
-    public function addConference(\Cfp\ConferenceBundle\Entity\Conference $conference)
-    {
-        $this->conference[] = $conference;
-    }
-
-    /**
-     * Add talk
-     *
-     * @param Cfp\UserBundle\Entity\Talk $talk
-     */
-    public function addTalk(\Cfp\UserBundle\Entity\Talk $talk)
-    {
-        $this->talk[] = $talk;
     }
 }

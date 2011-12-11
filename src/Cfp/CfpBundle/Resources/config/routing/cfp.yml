@@ -1,0 +1,30 @@
+CfpCfpBundle_show_my_cfps:
+    pattern:  /cfps
+    defaults: { _controller: "CfpCfpBundle:Cfp:index" }
+
+CfpCfpBundle_show_cfp:
+    pattern:  /cfp/{id}/show
+    defaults: { _controller: "CfpCfpBundle:Cfp:show" }
+
+CfpCfpBundle_new_cfp:
+    pattern:  /cfp/new
+    defaults: { _controller: "CfpCfpBundle:Cfp:new" }
+
+CfpCfpBundle_create_cfp:
+    pattern:  /cfp/create
+    defaults: { _controller: "CfpCfpBundle:Cfp:create" }
+    requirements: { _method: post }
+
+CfpCfpBundle_edit_cfp:
+    pattern:  /cfp/{id}/edit
+    defaults: { _controller: "CfpCfpBundle:Cfp:edit" }
+
+CfpCfpBundle_update_cfp:
+    pattern:  /cfp/{id}/update
+    defaults: { _controller: "CfpCfpBundle:Cfp:update" }
+    requirements: { _method: post }
+
+CfpCfpBundle_delete_cfp:
+    pattern:  /cfp/{id}/delete
+    defaults: { _controller: "CfpCfpBundle:Cfp:delete" }
+    requirements: { _method: post }
