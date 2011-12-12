@@ -54,9 +54,9 @@ class ConferenceController extends Controller
         // Just like a findAll() but with an orderBy()
         $conferences = $em->getRepository('CfpConferenceBundle:Conference')->findBy(array(), array('dt_start' => 'ASC'));;
 
-        return $this->render('CfpConferenceBundle:Conference:showall.html.twig', array(
+        return $this->render('CfpConferenceBundle:Conference:index.html.twig', array(
             'conferences' => $conferences,
-            'title' => 'All conferences',
+            'partial' => 'CfpConferenceBundle:Conference:partial_all.html.twig',
         ));
     }
 
@@ -65,9 +65,9 @@ class ConferenceController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $conferences = $em->getRepository('CfpConferenceBundle:Conference')->getOpenCfps();
 
-        return $this->render('CfpConferenceBundle:Conference:showall.html.twig', array(
+        return $this->render('CfpConferenceBundle:Conference:index.html.twig', array(
             'conferences' => $conferences,
-            'title' => 'Conferences with open CFP',
+            'partial' => 'CfpConferenceBundle:Conference:partial_opencfp.html.twig',
         ));
     }
 
@@ -76,9 +76,9 @@ class ConferenceController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $conferences = $em->getRepository('CfpConferenceBundle:Conference')->getNextByCfp();
 
-        return $this->render('CfpConferenceBundle:Conference:showall.html.twig', array(
+        return $this->render('CfpConferenceBundle:Conference:index.html.twig', array(
             'conferences' => $conferences,
-            'title' => 'Conferences about to open their CFP',
+            'partial' => 'CfpConferenceBundle:Conference:partial_pending.html.twig',
         ));
     }
 
