@@ -43,7 +43,7 @@ class Conference
              return self::CLOSED;
          }
 
-         // No idea. We should not be here... @TODO: Throw exception
+         // No idea. We should not be here. We assume the cfp is closed
          return self::CLOSED;
      }
 
