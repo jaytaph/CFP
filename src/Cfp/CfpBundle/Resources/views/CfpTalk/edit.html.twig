@@ -1,5 +1,8 @@
-<h1>CfpTalk edit</h1>
+{% extends '::layout.html.twig' %}
 
+{% block title %}CfpTalk edit{% endblock %}
+
+{% block body %}
 <form action="{{ path('CfpCfpBundle_update_cfp_talk', { 'cfp_id': 1, 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
     {{ form_widget(edit_form) }}
     <p>
@@ -20,3 +23,4 @@
         </form>
     </li>
 </ul>
+{% endblock %}

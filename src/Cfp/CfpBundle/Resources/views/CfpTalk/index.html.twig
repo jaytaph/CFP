@@ -1,10 +1,11 @@
-<h1>CfpTalk list</h1>
+{% extends '::layout.html.twig' %}
 
+{% block title %}CfpTalk list{% endblock %}
+
+{% block body %}
 <table class="records_list">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Remarks</th>
             <th>Title</th>
             <th>Submitted</th>
             <th>Actions</th>
@@ -13,19 +14,10 @@
     <tbody>
     {% for entity in entities %}
         <tr>
-            <td><a href="{{ path('CfpCfpBundle_show_cfp_talk', { 'cfp_id': 1, 'id': entity.id }) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.remarks }}</td>
-            <td>{{ entity.talk.title }}</td>
+            <td><a href="{{ path('CfpCfpBundle_show_cfp_talk', { 'cfp_id': 1, 'id': entity.id }) }}">{{ entity.talk.title }}</a></td>
             <td>{% if entity.dtcreated %}{{ entity.dtcreated|date('Y-m-d H:i:s') }}{% endif%}</td>
             <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('CfpCfpBundle_show_cfp_talk', { 'cfp_id': 1, 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('CfpCfpBundle_edit_cfp_talk', { 'cfp_id': 1, 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                        [ <a href="{{ path('CfpCfpBundle_edit_cfp_talk', { 'cfp_id': 1, 'id': entity.id }) }}">edit</a> ]
             </td>
         </tr>
     {% endfor %}
@@ -39,3 +31,4 @@
         </a>
     </li>
 </ul>
+{% endblock %}

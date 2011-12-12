@@ -19,7 +19,7 @@ Todo:
     - Talks & bios can only be edited by owner
     - Talks & bios can only be viewed by owner or conference hosts
 [ ] When we use our security context, make sure when it's expired (ie: string("anon.")), things don't break.
-[ ] Update layout HTML of cfp
+[X] Update layout HTML of cfp
 
 
 Bugs & issues:
