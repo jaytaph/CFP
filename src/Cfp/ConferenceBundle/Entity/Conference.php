@@ -104,7 +104,17 @@ class Conference
      */
     protected $geo_lat;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Cfp\UserBundle\Entity\User", inversedBy="conferences", fetch="EXTRA_LAZY")
+     * @ORM\JoinTable(name="conference_hosts")
+     */
+    protected $hosts;
 
+//    /**
+//     * @ORM\OneToMany(targetEntity="Cfp\ConferenceBundle\Entity\Conference", mappedBy="conference")
+//     */
+//    protected $cfps;
+    
     /**
      * Get id
      *
@@ -314,4 +324,25 @@ class Conference
     {
         return $this->tag;
     }
+
+    /**
+     * Add hosts
+     *
+     * @param Cfp\UserBundle\Entity\User $hosts
+     */
+    public function addUser(\Cfp\UserBundle\Entity\User $hosts)
+    {
+        $this->hosts[] = $hosts;
+    }
+
+    /**
+     * Get hosts
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getHosts()
+    {
+        return $this->hosts;
+    }
+
 }

@@ -26,7 +26,7 @@
                         <nav>
                             <ul class="navigation">
                                 <li><a href="{{ path('CfpPageBundle_homepage') }}">Home</a></li>
-                                <li><a href="{{ path('CfpConferenceBundle_show_conferences_all') }}">Conferences</a></li>
+                                {#<li><a href="{{ path('CfpConferenceBundle_show_conferences_all') }}">Conferences</a></li>#}
                                 <li><a href="{{ path('CfpConferenceBundle_show_conferences_cfp')}}">Open CFP</a></li>
                                 <li><a href="{{ path('CfpConferenceBundle_show_conferences_next')}}">Pending CFP</a></li>
 
@@ -34,6 +34,7 @@
                                 <li><a href="{{ path('CfpUserBundle_show_my_biographies') }}">My biographies</a></li>
                                 <li><a href="{{ path('CfpCfpBundle_show_my_cfps') }}">My CFPs</a></li>
                                 <li><a href="{{ path('CfpUserBundle_show_my_talks') }}">My talks</a></li>
+                                <li><a href="{{ path('CfpConferenceBundle_show_my_conferences') }}">My conferences</a></li>
                                 <li><a href="{{ path('fos_user_profile_show') }}">My profile</a></li>
                                 <img src="{{ gravatar(app.user.email, 25) }}">
 

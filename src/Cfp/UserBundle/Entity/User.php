@@ -29,6 +29,13 @@ class User extends BaseUser
      */
     protected $cfps;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Cfp\ConferenceBundle\Entity\Conference", mappedBy="hosts")
+     * @ORM\JoinTable(name="conference_hosts")
+     */
+    protected $conferences;
+
+
     public function __construct()
     {
         parent::__construct();
@@ -82,5 +89,25 @@ class User extends BaseUser
     public function getCfps()
     {
         return $this->cfps;
+    }
+
+    /**
+     * Add conferences
+     *
+     * @param Cfp\ConferenceBundle\Entity\Conference $conferences
+     */
+    public function addConference(\Cfp\ConferenceBundle\Entity\Conference $conferences)
+    {
+        $this->conferences[] = $conferences;
+    }
+
+    /**
+     * Get conferences
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getConferences()
+    {
+        return $this->conferences;
     }
 }

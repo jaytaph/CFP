@@ -11,10 +11,41 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Conference
 {
+    const PENDING = "pending";
+    const OPEN = "open";
+    const CLOSED = "closed";
+
     public function __construct()
     {
         $this->setDtCreated(new \DateTime());
     }
+
+    public function __toString() {
+        return $this->getName();
+    }
+
+    public function getCfpStatus() {
+         // The current time we compare with
+         $now = time();
+
+         // Is the CfP open?
+         if ($now > $this->getCfpStart()->format('U') && $now < $this->getCfpEnd()->format('U')) {
+             return self::OPEN;
+         }
+
+         // Is the CfP not yet opened?
+         if ($now < $this->getCfpStart()->format('U')) {
+             return self::PENDING;
+         }
+
+         // Is the CfP closed?
+         if ($now > $this->getCfpEnd()->format('U')) {
+             return self::CLOSED;
+         }
+
+         // No idea. We should not be here. We assume the cfp is closed
+         return self::CLOSED;
+     }
 
     /**
      * @ORM\Id
@@ -73,7 +104,17 @@ class Conference
      */
     protected $geo_lat;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Cfp\UserBundle\Entity\User", inversedBy="conferences", fetch="EXTRA_LAZY")
+     * @ORM\JoinTable(name="conference_hosts")
+     */
+    protected $hosts;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Cfp\ConferenceBundle\Entity\Conference", mappedBy="conference")
+     */
+    protected $cfps;
+    
     /**
      * Get id
      *
@@ -262,5 +303,65 @@ class Conference
     public function getGeoLat()
     {
         return $this->geo_lat;
+    }
+
+    /**
+     * Set tag
+     *
+     * @param string $tag
+     */
+    public function setTag($tag)
+    {
+        $this->tag = $tag;
+    }
+
+    /**
+     * Get tag
+     *
+     * @return string 
+     */
+    public function getTag()
+    {
+        return $this->tag;
+    }
+
+    /**
+     * Add hosts
+     *
+     * @param Cfp\UserBundle\Entity\User $hosts
+     */
+    public function addUser(\Cfp\UserBundle\Entity\User $hosts)
+    {
+        $this->hosts[] = $hosts;
+    }
+
+    /**
+     * Get hosts
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getHosts()
+    {
+        return $this->hosts;
+    }
+
+    /**
+     * Set cfps
+     *
+     * @param Cfp\ConferenceBundle\Entity\Conference $cfps
+     */
+    public function setCfps(\Cfp\ConferenceBundle\Entity\Conference $cfps)
+    {
+        $this->cfps = $cfps;
+    }
+
+    /**
+     * Get cfps
+     *
+     * @return Cfp\ConferenceBundle\Entity\Conference 
+     */
+    public function getCfps()
+    {
+        return $this->cfps;
     }
 }

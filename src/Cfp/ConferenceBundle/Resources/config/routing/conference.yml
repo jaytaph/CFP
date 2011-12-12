@@ -1,3 +1,9 @@
+CfpConferenceBundle_show_my_conferences:
+    pattern:  /my/conferences
+    defaults: { _controller: CfpConferenceBundle:Conference:showUserConferences }
+    requirements:
+        _method:  GET
+
 CfpConferenceBundle_show_conferences_all:
     pattern:  /conferences
     defaults: { _controller: CfpConferenceBundle:Conference:showAll }
@@ -21,4 +27,33 @@ CfpConferenceBundle_show_conference:
     defaults: { _controller: CfpConferenceBundle:Conference:show }
     requirements:
         _method:  GET
+        tag: \w+
+
+CfpConferenceBundle_new_conference:
+    pattern:  /conferences/new
+    defaults: { _controller: "CfpConferenceBundle:Conference:new" }
+
+CfpConferenceBundle_create_conference:
+    pattern:  /conferences/create
+    defaults: { _controller: "CfpConferenceBundle:Conference:create" }
+    requirements:
+        _method: POST
+        tag: \w+
+
+CfpConferenceBundle_edit_conference:
+    pattern:  /conference/{tag}/edit
+    defaults: { _controller: "CfpConferenceBundle:Conference:edit" }
+
+CfpConferenceBundle_update_conference:
+    pattern:  /conference/{tag}/update
+    defaults: { _controller: "CfpConferenceBundle:Conference:update" }
+    requirements:
+        _method: POST
+        tag: \w+
+
+CfpConferenceBundle_delete_conference:
+    pattern:  /conference/{tag}/delete
+    defaults: { _controller: "CfpConferenceBundle:Conference:delete" }
+    requirements:
+        _method: POST
         tag: \w+

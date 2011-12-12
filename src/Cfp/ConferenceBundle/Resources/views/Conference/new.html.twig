@@ -1,0 +1,22 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Create a new conference{% endblock %}
+
+{% block body %}
+<h1>Conference creation</h1>
+
+<form action="{{ path('CfpConferenceBundle_create_conference') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('CfpConferenceBundle_show_my_conferences') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

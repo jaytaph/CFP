@@ -7,11 +7,11 @@ Todo:
 [X] Let user add / update talks
         X multiple type of talks (workshops, talk, estimated time)
         X links to joind.in / slideshare / etc
-[ ] Let user create conference
+[X] Let user create conference
 [ ] Let user add other users as "conference host"
 [X] Let user add talks to conferences
         X (only during cfp opening)
-[ ] Send email to user that talk was submitted
+[X] Send email to user that talk was submitted
 [ ] Let "conference hosts" vote for talks (cfp-vote-entity)
 [X] User should be able to view all talks submitted to conferences
 [ ] Add ability for user to add multiple speakers to talk (by email-address?)
@@ -34,6 +34,7 @@ Bugs & issues:
 [ ] Does not update uploaded biography pictures
 [ ] When we already posted a CFP, we cannot post a new one, use the existing one
 [ ] We cannot add the same talk twice to a CFP
+[ ] Add notices to all mutations
 
 
 Low prio:
