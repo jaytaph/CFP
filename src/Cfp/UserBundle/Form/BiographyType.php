@@ -12,6 +12,8 @@ class BiographyType extends AbstractType
         $builder->add('description');
         $builder->add('biography', 'textarea');
 
+        $builder->add('picture', 'file');
+
         $builder->add('joindin_url', 'url');
         $builder->add('slideshare_url', 'url');
         $builder->add('blog_url', 'url');

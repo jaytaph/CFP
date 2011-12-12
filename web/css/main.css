@@ -30,13 +30,14 @@ body { line-height: 1;font-family: Arial, Helvetica, sans-serif;font-size: 12px;
 form { font-size: 16px; }
 form div { clear: left; margin-bottom: 10px; }
 form label { float: left; margin-right: 10px; text-align: right; width: 100px; font-weight: bold; vertical-align: top; padding-top: 10px; }
+form input[type="file"],
 form input[type="url"],
 form input[type="text"],
 form input[type="email"],
 form input[type="password"]
     { width: 500px; line-height: 26px; font-size: 20px; min-height: 26px; }
 form select
-    { width: 500px; line-height: 26px; font-size: 20px; min-height: 26px; }
+http://www.google.com/ji    { width: 500px; line-height: 26px; font-size: 20px; min-height: 26px; }
 
 form input[type="checkbox"]
     { margin-left: -5px; width: 30px; line-height: 26px; font-size: 20px; min-height: 26px; }

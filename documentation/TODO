@@ -32,6 +32,7 @@ Bugs & issues:
         - showall.html.twig should be index.html.twig
         - form.html.twig should be edit.html.twig
 [ ] Fix inline @TODO's
+[ ] Does not update uploaded biography pictures
 
 
 Low prio:
