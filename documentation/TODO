@@ -9,8 +9,8 @@ Todo:
         X links to joind.in / slideshare / etc
 [ ] Let user create conference
 [ ] Let user add other users as "conference host"
-[-] Let user add talks to conferences
-        - (only during cfp opening)
+[X] Let user add talks to conferences
+        X (only during cfp opening)
 [ ] Send email to user that talk was submitted
 [ ] Let "conference hosts" vote for talks (cfp-vote-entity)
 [X] User should be able to view all talks submitted to conferences
@@ -21,7 +21,6 @@ Todo:
 [ ] When we use our security context, make sure when it's expired (ie: string("anon.")), things don't break.
 [X] Update layout HTML of cfp
 [ ] When CFP is not open, we should not be allowed to add CFP. Also we should not add the Add CFP links?
-[ ] When we already posted a CFP, we cannot post a new one, use the existing one
 
 
 Bugs & issues:
@@ -33,6 +32,8 @@ Bugs & issues:
         - form.html.twig should be edit.html.twig
 [ ] Fix inline @TODO's
 [ ] Does not update uploaded biography pictures
+[ ] When we already posted a CFP, we cannot post a new one, use the existing one
+[ ] We cannot add the same talk twice to a CFP
 
 
 Low prio:

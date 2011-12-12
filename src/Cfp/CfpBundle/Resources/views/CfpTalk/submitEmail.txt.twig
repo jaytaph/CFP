@@ -1,0 +1,10 @@
+You have submitted a talk to {{ cfp.conference.name }} :
+
+Talk: {{ talk.title }}
+
+{{ talk.abstract }}
+
+<a href="{{ url('CfpCfpBundle_show_cfp_talk', { 'cfp_id': cfp.id, 'id' : entity.id }) }}">Click here if you want to view, update or delete this talk</a>
+
+Regards,
+CFP

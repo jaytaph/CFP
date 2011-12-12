@@ -76,19 +76,38 @@ class CfpTalkController extends Controller
      * Creates a new CfpTalk entity.
      *
      */
-    public function createAction()
+    public function createAction($cfp_id)
     {
         $entity  = new CfpTalk();
         $request = $this->getRequest();
         $form    = $this->createForm(new CfpTalkType(), $entity);
         $form->bindRequest($request);
 
+        $em = $this->getDoctrine()->getEntityManager();
+        $cfp = $em->getRepository('CfpCfpBundle:Cfp')->find($cfp_id);
+        if (! $cfp instanceof \Cfp\CfpBundle\Entity\Cfp) {
+            throw new \Symfony\Component\Form\Exception\CreationException("Cannot find the CFP to bind our talk to.");
+        }
+        $entity->setCfp($cfp);
+
+
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('CfpCfpBundle_show_cfp_talk', array('cfp_id' => 1, 'id' => $entity->getId())));
+            // @TODO: Check if subject should be escaped...
+            // Add email to user
+            $message = \Swift_Message::newInstance()
+                ->setSubject('New talk submitted to ' . $entity->getCfp()->getConference()->getName())
+                ->setFrom($this->container->getParameter('emails.contact_email'))
+                ->setTo($entity->getCfp()->GetUser()->getEmail())
+                ->setBody($this->renderView('CfpCfpBundle:CfpTalk:submitEmail.txt.twig', array('entity' => $entity, 'cfp' => $cfp, 'talk' => $entity->getTalk())));
+            $this->get('mailer')->send($message);
+
+            $this->get('session')->setFlash('notice', 'Your talk has been submitted!');
+
+            return $this->redirect($this->generateUrl('CfpCfpBundle_show_my_cfp_talks', array('cfp_id' => 1)));
             
         }
 

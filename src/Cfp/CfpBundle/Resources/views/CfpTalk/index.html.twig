@@ -5,7 +5,7 @@
 {% block body %}
 <h1>All submitted talks for {{ cfp.conference.name }} </h1>
 
-<table class="records_list">
+<table class="list">
     <thead>
         <tr>
             <th>Title</th>
@@ -15,7 +15,7 @@
     </thead>
     <tbody>
     {% for entity in entities %}
-        <tr>
+        <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
             <td><a href="{{ path('CfpCfpBundle_show_cfp_talk', { 'cfp_id': 1, 'id': entity.id }) }}">{{ entity.talk.title }}</a></td>
             <td>{% if entity.dtcreated %}{{ entity.dtcreated|date('Y-m-d H:i:s') }}{% endif%}</td>
             <td>
@@ -25,6 +25,7 @@
     {% endfor %}
     </tbody>
 </table>
+<br/>
 
 <ul>
     <li>
