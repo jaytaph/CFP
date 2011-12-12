@@ -8,7 +8,7 @@ use Symfony\Component\Locale\Locale;
 class talkTypeChoiceList extends AbstractType
 {
     // @TODO: this should be more custom (maybe fetch from database or something?)
-    protected $talkTypes = array("talk", "workshop", "keynote", "discussion", "other");
+    protected $talkTypes = array("talk"=>"talk", "workshop"=>"workshop", "keynote"=>"keynote", "discussion"=>"discussion", "other"=>"other");
 
     public function getDefaultOptions(array $options)
     {
