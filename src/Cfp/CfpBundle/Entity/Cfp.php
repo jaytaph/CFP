@@ -33,6 +33,12 @@ class Cfp
     protected $user;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Cfp\UserBundle\Entity\Biography", inversedBy="id")
+     */
+    protected $biography;
+
+
+    /**
      * @ORM\Column(type="text", length="1024")
      */
     protected $remarks;
@@ -157,5 +163,25 @@ class Cfp
     public function getCfpTalks()
     {
         return $this->cfp_talks;
+    }
+
+    /**
+     * Set biography
+     *
+     * @param Cfp\UserBundle\Entity\Biography $biography
+     */
+    public function setBiography(\Cfp\UserBundle\Entity\Biography $biography)
+    {
+        $this->biography = $biography;
+    }
+
+    /**
+     * Get biography
+     *
+     * @return Cfp\UserBundle\Entity\Biography 
+     */
+    public function getBiography()
+    {
+        return $this->biography;
     }
 }

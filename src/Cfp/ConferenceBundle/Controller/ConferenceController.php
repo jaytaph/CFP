@@ -56,6 +56,7 @@ class ConferenceController extends Controller
 
         return $this->render('CfpConferenceBundle:Conference:showall.html.twig', array(
             'conferences' => $conferences,
+            'title' => 'All conferences',
         ));
     }
 
@@ -66,6 +67,7 @@ class ConferenceController extends Controller
 
         return $this->render('CfpConferenceBundle:Conference:showall.html.twig', array(
             'conferences' => $conferences,
+            'title' => 'Conferences with open CFP',
         ));
     }
 
@@ -76,6 +78,7 @@ class ConferenceController extends Controller
 
         return $this->render('CfpConferenceBundle:Conference:showall.html.twig', array(
             'conferences' => $conferences,
+            'title' => 'Conferences about to open their CFP',
         ));
     }
 

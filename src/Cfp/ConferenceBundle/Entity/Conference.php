@@ -11,6 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Conference
 {
+    const PENDING = "pending";
+    const OPEN = "open";
+    const CLOSED = "closed";
+
     public function __construct()
     {
         $this->setDtCreated(new \DateTime());
@@ -19,6 +23,29 @@ class Conference
     public function __toString() {
         return $this->getName();
     }
+
+    public function getCfpStatus() {
+         // The current time we compare with
+         $now = time();
+
+         // Is the CfP open?
+         if ($now > $this->getCfpStart()->format('U') && $now < $this->getCfpEnd()->format('U')) {
+             return self::OPEN;
+         }
+
+         // Is the CfP not yet opened?
+         if ($now < $this->getCfpStart()->format('U')) {
+             return self::PENDING;
+         }
+
+         // Is the CfP closed?
+         if ($now > $this->getCfpEnd()->format('U')) {
+             return self::CLOSED;
+         }
+
+         // No idea. We should not be here... @TODO: Throw exception
+         return self::CLOSED;
+     }
 
     /**
      * @ORM\Id

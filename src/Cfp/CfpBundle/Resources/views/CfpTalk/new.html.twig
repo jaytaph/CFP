@@ -3,6 +3,8 @@
 {% block title %}CfpTalk creation{% endblock %}
 
 {% block body %}
+
+<h1>Add new talk for {{ cfp.conference.name }} </h1>
 <form action="{{ path('CfpCfpBundle_create_cfp_talk', {'cfp_id': 1}) }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p>

@@ -25,3 +25,50 @@ body { line-height: 1;font-family: Arial, Helvetica, sans-serif;font-size: 12px;
 .main-col p { line-height: 1.5em; margin-bottom: 20px; }
 
 #footer { border-top: 1px solid #ccc; clear: both; text-align: center; padding: 10px; color: #aaa; }
+
+.notice { text-align: center; padding: 10px; background: #DFF2BF; border: 1px solid; color: #4F8A10; margin-bottom: 10px; }
+form { font-size: 16px; }
+form div { clear: left; margin-bottom: 10px; }
+form label { float: left; margin-right: 10px; text-align: right; width: 100px; font-weight: bold; vertical-align: top; padding-top: 10px; }
+form input[type="url"],
+form input[type="text"],
+form input[type="email"],
+form input[type="password"]
+    { width: 500px; line-height: 26px; font-size: 20px; min-height: 26px; }
+form select
+    { width: 500px; line-height: 26px; font-size: 20px; min-height: 26px; }
+
+form input[type="checkbox"]
+    { margin-left: -5px; width: 30px; line-height: 26px; font-size: 20px; min-height: 26px; }
+form textarea { width: 500px; height: 150px; line-height: 26px; font-size: 20px; }
+form input[type="submit"] { margin-left: 110px; width: 508px; line-height: 26px; font-size: 20px; min-height: 26px; }
+form ul li { color: #ff0000; margin-bottom: 5px; }
+
+
+table.list {
+    color: #404040;
+    width: 100%;
+    background-color: #fafafa;
+    border: 1px #6699CC solid;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    margin-top: 0px;
+}
+
+
+table.list tr.even {
+    background: #f8f8f8;
+}
+table.list tr.odd {
+    background: #fff;
+}
+
+
+
+table.list td {
+    border-bottom: 1px dotted #6699CC;
+    color: #404040;
+    /*background-color: white;*/
+    text-align: left;
+    padding-left: 3px;
+}

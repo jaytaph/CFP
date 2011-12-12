@@ -1,21 +1,43 @@
 {% extends '::layout.html.twig' %}
 
-{% block title %}{{ entity.title }}{% endblock %}
+{% block title %}{{ entity.conference.name }}{% endblock %}
 
 {% block body %}
     <article class="cfp">
             <header>
-                <h2>{{ entity.conference.title }}</h2>
+                <h2>{{ entity.conference.name }}</h2>
             </header>
         <div>
             <h3 >Remark:</h3>
-            <p>{{ entity.remark }}</p>
+            <p>{{ entity.remarks }}</p>
         </div>
 
         <div>
-            <h3 >Conference:</h3>
-            <p>{{ entity.conference.title }}</p>
+            <h3 >Bio:</h3>
+            <p>{{ entity.biography.description }}</p>
+            <p>{{ entity.biography.biography }}</p>
         </div>
+
+        {% if entity.cfptalks|length > 0 %}
+        <div>
+            <table class="cfp">
+                <tr>
+                    <th>Talk</th>
+                    <th>Type</th>
+                    <th>Action</th>
+                </tr>
+                {% for cfptalk in entity.cfptalks %}
+                    <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
+                        <td>{{ cfptalk.talk.title }}</td>
+                        <td>{{ cfptalk.talk.type }}</td>
+                        <td>
+                            {#[ <a href="{{ path('CfpCfpBundle_show_my_cfp_talks', { 'cfp_id': entity.id }) }}">show talks</a> ]#}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endif %}
 
         <div>
           [ <a href="{{ path('CfpCfpBundle_edit_cfp', { 'id': entity.id }) }}">Edit cfp</a> ]

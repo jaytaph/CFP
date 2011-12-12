@@ -10,9 +10,8 @@ class CfpTalkType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('remarks')
-            ->add('dt_created')
             ->add('talk')
+            ->add('remarks')
         ;
     }
 

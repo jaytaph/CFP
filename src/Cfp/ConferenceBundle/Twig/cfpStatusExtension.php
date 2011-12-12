@@ -1,6 +1,7 @@
 <?php
 
 namespace Cfp\ConferenceBundle\Twig;
+use \Cfp\ConferenceBundle\Entity\Conference;
 
 class cfpStatusExtension extends \Twig_Extension
 {
@@ -9,22 +10,26 @@ class cfpStatusExtension extends \Twig_Extension
     {
         return array(
             'cfp_status'        => new \Twig_Function_Method($this, 'getCfpStatus'),
+            'cfp_is_open'        => new \Twig_Function_Method($this, 'isCfpOpen'),
         );
     }
 
-    public function getCfpStatus(\DateTime $start, \DateTime $end, $add_suffix = false)
+    public function isCfpOpen(Conference $conference) {
+        return ($conference->getCfpStatus() == Conference::OPEN);
+    }
+
+    public function getCfpStatus(\Cfp\ConferenceBundle\Entity\Conference $conference, $add_suffix = false)
     {
-        // The current time we compare with
-        $now = time();
+        $status = $conference->getCfpStatus();
 
         // Additional suffix (in case of add_suffix == true)
         $suffix = "";
 
         // Is the CfP open?
-        if ($now > $start->format('U') && $now < $end->format('U')) {
+        if ($status == Conference::OPEN) {
             if ($add_suffix) {
                 // Get diff in days between now and the closing
-                $suffix = $end->diff(new \DateTime())->days;
+                $suffix = $conference->getCfpEnd()->diff(new \DateTime())->days;
                 if ($suffix <= 0) {
                     $suffix = "last day!";
                 } else {
@@ -37,10 +42,10 @@ class cfpStatusExtension extends \Twig_Extension
         }
 
         // Is the CfP not yet opened?
-        if ($now < $start->format('U')) {
+        if ($status == Conference::PENDING) {
             if ($add_suffix) {
                 // Get diff in days between now and the closing
-                $suffix = $start->diff(new \DateTime())->days;
+                $suffix = $conference->getCfpStart()->diff(new \DateTime())->days;
                 if ($suffix <= 0) {
                     $suffix = "tomorrow!";
                 } else {
@@ -53,7 +58,7 @@ class cfpStatusExtension extends \Twig_Extension
         }
 
         // Is the CfP closed?
-        if ($now > $end->format('U')) {
+        if ($status == Conference::CLOSED) {
             return "Closed";
         }
 

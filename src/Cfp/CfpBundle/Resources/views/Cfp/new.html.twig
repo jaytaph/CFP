@@ -1,4 +1,9 @@
-<h1>Cfp creation</h1>
+{% extends '::layout.html.twig' %}
+
+{% block title %}Create a new CFP{% endblock %}
+
+{% block body %}
+<h1>Create a new CFP for {{ conference.name }}</h1>
 
 <form action="{{ path('CfpCfpBundle_create_cfp') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
@@ -9,8 +14,9 @@
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('CfpUserBundle_show_my_cfps') }}">
+        <a href="{{ path('CfpCfpBundle_show_my_cfps') }}">
             Back to the list
         </a>
     </li>
 </ul>
+{% endblock %}

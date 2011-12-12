@@ -7,7 +7,7 @@ CfpCfpBundle_show_cfp:
     defaults: { _controller: "CfpCfpBundle:Cfp:show" }
 
 CfpCfpBundle_new_cfp:
-    pattern:  /cfp/new
+    pattern:  /cfp/new/{conferencetag}
     defaults: { _controller: "CfpCfpBundle:Cfp:new" }
 
 CfpCfpBundle_create_cfp:

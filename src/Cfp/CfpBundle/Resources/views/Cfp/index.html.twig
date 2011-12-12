@@ -6,16 +6,19 @@
     <table class="cfp">
         <tr>
             <th>Cfp</th>
+            <th>Bio</th>
             <th>Talks submitted</th>
             <th>Action</th>
         </tr>
         {% for entity in entities %}
             <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
                 <td>{{ entity.conference.name }}</td>
-                <td>{{ entity.cfptalks|length }}</td>
+                <td>{{ entity.biography.description }}</td>
+                <td align=center>{{ entity.cfptalks|length }}</td>
                 <td>
-                    [ <a href="{{ path('CfpCfpBundle_edit_cfp', { 'id': entity.id }) }}">edit</a> ]
-                    [ <a href="{{ path('CfpCfpBundle_show_my_cfp_talks', { 'cfp_id': entity.id }) }}">show talks</a> ]
+                    [ <a href="{{ path('CfpCfpBundle_edit_cfp', { 'id': entity.id }) }}">edit</a> ] -
+                    [ <a href="{{ path('CfpCfpBundle_show_my_cfp_talks', { 'cfp_id': entity.id }) }}">show talks</a> ] -
+                    [ <a href="{{ path('CfpCfpBundle_new_cfp_talk', {'cfp_id': 1}) }}">New talk</a> ]
                 </td>
             </tr>
         {% endfor %}

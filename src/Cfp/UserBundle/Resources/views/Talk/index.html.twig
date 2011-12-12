@@ -3,7 +3,7 @@
 {% block title %}Talk list{% endblock %}
 
 {% block body %}
-    <table class="talk">
+    <table class="list">
         <tr>
             <th>Title</th>
             <th>Type</th>
@@ -20,6 +20,7 @@
         {% endfor %}
     </table>
 
+    <br/>
     <div>
       [ <a href="{{ path('CfpUserBundle_new_talk') }}">Create a new talk</a> ]
     </div>

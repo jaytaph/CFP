@@ -20,6 +20,11 @@ class Biography
         // @TODO: Lifecycle, when updated, update this date as well
         $this->setDtUpdated(new \DateTime());
     }
+
+    function __toString() {
+        return $this->getDescription();
+    }
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")

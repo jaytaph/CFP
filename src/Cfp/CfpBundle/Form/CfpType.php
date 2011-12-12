@@ -10,6 +10,7 @@ class CfpType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
+            ->add('biography')
             ->add('remarks', 'textarea');
     }
 

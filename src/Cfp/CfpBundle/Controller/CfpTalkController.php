@@ -20,11 +20,13 @@ class CfpTalkController extends Controller
     public function indexAction($cfp_id)
     {
         $em = $this->getDoctrine()->getEntityManager();
-
         $entities = $em->getRepository('CfpCfpBundle:CfpTalk')->findByCfp($cfp_id);
 
+        $cfp = $em->getRepository('CfpCfpBundle:Cfp')->find($cfp_id);
+
         return $this->render('CfpCfpBundle:CfpTalk:index.html.twig', array(
-            'entities' => $entities
+            'entities' => $entities,
+            'cfp' => $cfp,
         ));
     }
 
@@ -55,13 +57,17 @@ class CfpTalkController extends Controller
      * Displays a form to create a new CfpTalk entity.
      *
      */
-    public function newAction()
+    public function newAction($cfp_id)
     {
         $entity = new CfpTalk();
         $form   = $this->createForm(new CfpTalkType(), $entity);
 
+        $em = $this->getDoctrine()->getEntityManager();
+        $cfp = $em->getRepository('CfpCfpBundle:Cfp')->find($cfp_id);
+
         return $this->render('CfpCfpBundle:CfpTalk:new.html.twig', array(
             'entity' => $entity,
+            'cfp' => $cfp,
             'form'   => $form->createView()
         ));
     }

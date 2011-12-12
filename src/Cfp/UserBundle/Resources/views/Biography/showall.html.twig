@@ -3,20 +3,19 @@
 {% block title %}Show ALL the biographies!{% endblock %}
 
 {% block body %}
-    <table class="biography">
+    <table class="list">
         <tr>
             <th>Description</th>
-            <th>Added</th>
             <th>Added</th>
         </tr>
         {% for biography in biographies %}
         <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
             <td><a href="{{ path('CfpUserBundle_show_biography', { 'id': biography.id }) }}">{{ biography.description }}</a></td>
             <td>{{ biography.dtadded|date('F j, Y') }}</td>
-            <td>{{ biography.owner.username }}</td>
         </tr>
         {% endfor %}
     </table>
+    <br/>
 
     <div>
       [ <a href="{{ path('CfpUserBundle_add_biography') }}">Add new biography</a> ]

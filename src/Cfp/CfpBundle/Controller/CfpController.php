@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Cfp\CfpBundle\Entity\Cfp;
 use Cfp\CfpBundle\Form\CfpType;
+use \Cfp\ConferenceBundle\Entity\Conference;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
  * Cfp controller.
@@ -64,13 +66,26 @@ class CfpController extends Controller
      * Displays a form to create a new Cfp entity.
      *
      */
-    public function newAction()
+    public function newAction($conferencetag)
     {
         $entity = new Cfp();
         $form   = $this->createForm(new CfpType(), $entity);
 
+        $em = $this->getDoctrine()->getEntityManager();
+        $conference = $em->getRepository('CfpConferenceBundle:Conference')->findOneByTag($conferencetag);
+
+        if (!$conference) {
+            throw $this->createNotFoundException('Unable to find conference.');
+        }
+
+        // CFP is not open, we cannot add!
+        if ($conference->getCfpStatus() != Conference::OPEN) {
+            throw new AccessDeniedHttpException('Conference CFP is closed.');
+        }
+
         return $this->render('CfpCfpBundle:Cfp:new.html.twig', array(
             'entity' => $entity,
+            'conference' => $conference,
             'form'   => $form->createView()
         ));
     }
@@ -79,19 +94,34 @@ class CfpController extends Controller
      * Creates a new Cfp entity.
      *
      */
-    public function createAction()
+    public function createAction($conferencetag)
     {
         $entity  = new Cfp();
         $request = $this->getRequest();
         $form    = $this->createForm(new CfpType(), $entity);
         $form->bindRequest($request);
 
+        // Fetch conference
+        $em = $this->getDoctrine()->getEntityManager();
+        $conference = $em->getRepository('CfpConferenceBundle:Conference')->findOneByTag($conferencetag);
+        if (!$conference) {
+            throw $this->createNotFoundException('Unable to find conference.');
+        }
+
+        // CFP is not open, we cannot add!
+        if ($conference->getCfpStatus() != Conference::OPEN) {
+            throw new AccessDeniedHttpException('Conference CFP is closed.');
+        }
+
         if ($form->isValid()) {
+            // Set correct conference
+            $entity->setConference($conference);
+
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('CfpCfpBundle_show_my_cfp_talk', array('cfp_id' => 1, 'id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('CfpCfpBundle_show_cfp', array('cfp_id' => 1, 'id' => $entity->getId())));
             
         }
 
@@ -150,7 +180,7 @@ class CfpController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('CfpCfpBundle_edit_my_cfp_talks', array('cfp_id' => 1, 'id' => $id)));
+            return $this->redirect($this->generateUrl('CfpCfpBundle_show_my_cfps', array('cfp_id' => 1)));
         }
 
         return $this->render('CfpCfpBundle:Cfp:edit.html.twig', array(
