@@ -7,7 +7,7 @@ use Ivory\GoogleMapBundle\Model\MapTypeId;
 use Ivory\GoogleMapBundle\Model\Overlays\Animation;
 
 
-class DefaultController extends Controller
+class ConferenceController extends Controller
 {
     
     public function showAction($tag)
@@ -42,7 +42,7 @@ class DefaultController extends Controller
 
         $map->addMarker($marker);
 
-        return $this->render('CfpConferenceBundle:Default:show.html.twig', array(
+        return $this->render('CfpConferenceBundle:Conference:show.html.twig', array(
             'conference'  => $conference,
             'map'         => $map,
         ));
@@ -54,7 +54,7 @@ class DefaultController extends Controller
         // Just like a findAll() but with an orderBy()
         $conferences = $em->getRepository('CfpConferenceBundle:Conference')->findBy(array(), array('dt_start' => 'ASC'));;
 
-        return $this->render('CfpConferenceBundle:Default:showall.html.twig', array(
+        return $this->render('CfpConferenceBundle:Conference:showall.html.twig', array(
             'conferences' => $conferences,
         ));
     }
@@ -64,7 +64,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $conferences = $em->getRepository('CfpConferenceBundle:Conference')->getOpenCfps();
 
-        return $this->render('CfpConferenceBundle:Default:showall.html.twig', array(
+        return $this->render('CfpConferenceBundle:Conference:showall.html.twig', array(
             'conferences' => $conferences,
         ));
     }
@@ -74,7 +74,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $conferences = $em->getRepository('CfpConferenceBundle:Conference')->getNextByCfp();
 
-        return $this->render('CfpConferenceBundle:Default:showall.html.twig', array(
+        return $this->render('CfpConferenceBundle:Conference:showall.html.twig', array(
             'conferences' => $conferences,
         ));
     }

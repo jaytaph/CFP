@@ -1,24 +1,24 @@
 CfpConferenceBundle_show_conferences_all:
     pattern:  /conferences
-    defaults: { _controller: CfpConferenceBundle:Default:showAll }
+    defaults: { _controller: CfpConferenceBundle:Conference:showAll }
     requirements:
         _method:  GET
 
 CfpConferenceBundle_show_conferences_cfp:
     pattern:  /conferences/cfp
-    defaults: { _controller: CfpConferenceBundle:Default:showCfp }
+    defaults: { _controller: CfpConferenceBundle:Conference:showCfp }
     requirements:
         _method:  GET
 
 CfpConferenceBundle_show_conferences_next:
     pattern:  /conferences/next
-    defaults: { _controller: CfpConferenceBundle:Default:showNextOpenCfp }
+    defaults: { _controller: CfpConferenceBundle:Conference:showNextOpenCfp }
     requirements:
         _method:  GET
 
 CfpConferenceBundle_show_conference:
     pattern:  /conference/{tag}
-    defaults: { _controller: CfpConferenceBundle:Default:show }
+    defaults: { _controller: CfpConferenceBundle:Conference:show }
     requirements:
         _method:  GET
         tag: \w+

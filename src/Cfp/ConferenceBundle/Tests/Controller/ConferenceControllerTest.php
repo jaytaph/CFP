@@ -4,7 +4,7 @@ namespace Cfp\ConferenceBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DefaultControllerTest extends WebTestCase
+class ConferenceControllerTest extends WebTestCase
 {
     public function testIndex()
     {
