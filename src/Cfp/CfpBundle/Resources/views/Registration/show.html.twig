@@ -3,7 +3,7 @@
 {% block title %}{{ entity.conference.name }}{% endblock %}
 
 {% block body %}
-    <article class="cfp">
+    <article class="registration">
             <header>
                 <h2>{{ entity.conference.name }}</h2>
             </header>
@@ -18,20 +18,20 @@
             <p>{{ entity.biography.biography }}</p>
         </div>
 
-        {% if entity.cfptalks|length > 0 %}
+        {% if entity.submissions|length > 0 %}
         <div>
-            <table class="cfp">
+            <table class="registration">
                 <tr>
                     <th>Talk</th>
                     <th>Type</th>
                     <th>Action</th>
                 </tr>
-                {% for cfptalk in entity.cfptalks %}
+                {% for submission in entity.submissions %}
                     <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
-                        <td>{{ cfptalk.talk.title }}</td>
-                        <td>{{ cfptalk.talk.type }}</td>
+                        <td>{{ submission.talk.title }}</td>
+                        <td>{{ submission.talk.type }}</td>
                         <td>
-                            {#[ <a href="{{ path('CfpCfpBundle_show_my_cfp_talks', { 'cfp_id': entity.id }) }}">show talks</a> ]#}
+                            {#[ <a href="{{ path('CfpCfpBundle_show_my_submissions', { 'registration_id': entity.id }) }}">show talks</a> ]#}
                         </td>
                     </tr>
                 {% endfor %}
@@ -40,9 +40,9 @@
         {% endif %}
 
         <div>
-          [ <a href="{{ path('CfpCfpBundle_edit_cfp', { 'id': entity.id }) }}">Edit cfp</a> ]
-          [ <a href="{{ path('CfpCfpBundle_show_my_cfps') }}">Back to the list</a> ]
-            <form action="{{ path('CfpCfpBundle_delete_cfp', { 'id': entity.id }) }}" method="post">
+          [ <a href="{{ path('CfpCfpBundle_edit_registration', { 'id': entity.id }) }}">Edit registration</a> ]
+          [ <a href="{{ path('CfpCfpBundle_show_my_registrations') }}">Back to the list</a> ]
+            <form action="{{ path('CfpCfpBundle_delete_registration', { 'id': entity.id }) }}" method="post">
                 {{ form_widget(delete_form) }}
                 <button type="submit">Delete</button>
             </form>

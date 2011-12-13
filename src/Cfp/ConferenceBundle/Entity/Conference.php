@@ -110,10 +110,10 @@ class Conference
      */
     protected $hosts;
 
-//    /**
-//     * @ORM\OneToMany(targetEntity="Cfp\ConferenceBundle\Entity\Conference", mappedBy="conference")
-//     */
-//    protected $cfps;
+    /**
+     * @ORM\OneToMany(targetEntity="Cfp\CfpBundle\Entity\Registration", mappedBy="conference")
+     */
+    protected $registrations;
     
     /**
      * Get id
@@ -345,4 +345,36 @@ class Conference
         return $this->hosts;
     }
 
+    public function getSubmissionCount() {
+        $count = 0;
+        foreach ($this->getRegistrations() as $registration) {
+              $count += count($registration->getSubmissions());
+        }
+        return $count;
+    }
+
+    public function getRegistrationCount() {
+        return count($this->getRegistrations());
+    }
+
+
+    /**
+     * Add registrations
+     *
+     * @param Cfp\CfpBundle\Entity\Registration $registrations
+     */
+    public function addRegistration(\Cfp\CfpBundle\Entity\Registration $registrations)
+    {
+        $this->registrations[] = $registrations;
+    }
+
+    /**
+     * Get registrations
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getRegistrations()
+    {
+        return $this->registrations;
+    }
 }

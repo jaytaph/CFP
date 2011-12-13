@@ -1,0 +1,22 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Submission creation{% endblock %}
+
+{% block body %}
+
+<h1>Add new talk for {{ registration.conference.name }} </h1>
+<form action="{{ path('CfpCfpBundle_create_submission', {'registration_id': registration.id}) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('CfpCfpBundle_show_my_submissions', {'registration_id': registration.id}) }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

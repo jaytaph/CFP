@@ -22,7 +22,7 @@
         <div>
         [ <a href="{{ path('CfpConferenceBundle_show_conferences_all') }}">Back to the list</a> ]
         {% if cfp_is_open(conference) %}
-        - [ <a href="{{ path('CfpCfpBundle_new_cfp', {'conferencetag': conference.tag}) }}">Add CFP</a> ]
+        - [ <a href="{{ path('CfpCfpBundle_new_registration', {'tag': conference.tag}) }}">Add CFP</a> ]
         {% endif %}
 
         </div>

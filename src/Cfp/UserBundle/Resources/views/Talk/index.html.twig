@@ -7,12 +7,14 @@
         <tr>
             <th>Title</th>
             <th>Type</th>
+            <th>Stats (sub/acc/rej)</th>
             <th>Actions</th>
         </tr>
         {% for entity in entities %}
             <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
                 <td><a href="{{ path('CfpUserBundle_show_talk', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
                 <td>{{ entity.type }}</td>
+                <td>{{ entity.getSubmitCount }} / {{ entity.getAcceptedCount }} / {{ entity.getRejectedCount }}</td>
                 <td>
                     [ <a href="{{ path('CfpUserBundle_edit_talk', { 'id': entity.id }) }}">edit</a> ]
                 </td>

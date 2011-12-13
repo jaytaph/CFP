@@ -1,0 +1,30 @@
+CfpCfpBundle_show_my_submissions:
+    pattern:  /submissions
+    defaults: { _controller: "CfpCfpBundle:Submissions:index" }
+
+CfpCfpBundle_show_submission:
+    pattern:  /submission/{id}/show
+    defaults: { _controller: "CfpCfpBundle:Submissions:show" }
+
+CfpCfpBundle_new_submission:
+    pattern:  /submission/new
+    defaults: { _controller: "CfpCfpBundle:Submissions:new" }
+
+CfpCfpBundle_create_submission:
+    pattern:  /submissions/create
+    defaults: { _controller: "CfpCfpBundle:Submissions:create" }
+    requirements: { _method: post }
+
+CfpCfpBundle_edit_submission:
+    pattern:  =/submission/{id}/edit
+    defaults: { _controller: "CfpCfpBundle:Submissions:edit" }
+
+CfpCfpBundle_update_submission:
+    pattern:  =/submission/{id}/update
+    defaults: { _controller: "CfpCfpBundle:Submissions:update" }
+    requirements: { _method: post }
+
+CfpCfpBundle_delete_submission:
+    pattern:  =/submission/{id}/delete
+    defaults: { _controller: "CfpCfpBundle:Submissions:delete" }
+    requirements: { _method: post }

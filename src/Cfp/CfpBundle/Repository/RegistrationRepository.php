@@ -7,9 +7,9 @@ use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\Query;
 
 /**
- * CfpRepository
+ * RegistrationRepository
  *
  */
-class CfpRepository extends EntityRepository
+class RegistrationRepository extends EntityRepository
 {
 }

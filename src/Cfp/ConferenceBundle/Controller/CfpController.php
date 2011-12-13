@@ -83,7 +83,7 @@ class CfpController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('CfpConferenceBundle_show_Cfp', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('CfpConferenceBundle_show_registration', array('id' => $entity->getId())));
             
         }
 
@@ -142,7 +142,7 @@ class CfpController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('CfpConferenceBundle_edit_Cfp', array('id' => $id)));
+            return $this->redirect($this->generateUrl('CfpConferenceBundle_edit_registration', array('id' => $id)));
         }
 
         return $this->render('CfpConferenceBundle:Cfp:edit.html.twig', array(
@@ -175,7 +175,7 @@ class CfpController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('CfpConferenceBundle_show_my_Cfps'));
+        return $this->redirect($this->generateUrl('CfpConferenceBundle_show_my_registrations'));
     }
 
     private function createDeleteForm($id)

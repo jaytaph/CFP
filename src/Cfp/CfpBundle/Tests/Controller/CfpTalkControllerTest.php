@@ -4,7 +4,7 @@ namespace Cfp\CfpBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class CfpTalkControllerTest extends WebTestCase
+class SubmissionControllerTest extends WebTestCase
 {
     /*
     public function testCompleteScenario()
@@ -19,7 +19,7 @@ class CfpTalkControllerTest extends WebTestCase
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'cfptalk[field_name]'  => 'Test',
+            'submission[field_name]'  => 'Test',
             // ... other fields to fill
         ));
 
@@ -33,7 +33,7 @@ class CfpTalkControllerTest extends WebTestCase
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
         $form = $crawler->selectButton('Edit')->form(array(
-            'cfptalk[field_name]'  => 'Foo',
+            'submission[field_name]'  => 'Foo',
             // ... other fields to fill
         ));
 

@@ -1,14 +1,14 @@
 <?php
-// src/Cfp/CfpBundle/Entity/Cfp.php
+// src/Cfp/CfpBundle/Entity/Registration.php
 
 namespace Cfp\CfpBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="Cfp\CfpBundle\Repository\CfpRepository")
- * @ORM\Table(name="cfp")
+ * @ORM\Entity(repositoryClass="Cfp\CfpBundle\Repository\RegistrationRepository")
+ * @ORM\Table(name="registration")
  */
-class Cfp
+class Registration
 {
     public function __construct()
     {
@@ -44,15 +44,14 @@ class Cfp
     protected $remarks;
 
     /**
-     * @ORM\OneToMany(targetEntity="Cfp\CfpBundle\Entity\CfpTalk", mappedBy="cfp")
+     * @ORM\OneToMany(targetEntity="Cfp\CfpBundle\Entity\Submission", mappedBy="registration")
      */
-    protected $cfp_talks;
+    protected $submissions;
 
     /**
      * @ORM\Column(type="datetime")
      */
     protected $dt_created;
-
 
 
     /**
@@ -146,26 +145,6 @@ class Cfp
     }
 
     /**
-     * Add cfp_talks
-     *
-     * @param Cfp\CfpBundle\Entity\CfpTalk $cfpTalks
-     */
-    public function addCfpTalk(\Cfp\CfpBundle\Entity\CfpTalk $cfpTalks)
-    {
-        $this->cfp_talks[] = $cfpTalks;
-    }
-
-    /**
-     * Get cfp_talks
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getCfpTalks()
-    {
-        return $this->cfp_talks;
-    }
-
-    /**
      * Set biography
      *
      * @param Cfp\UserBundle\Entity\Biography $biography
@@ -183,5 +162,25 @@ class Cfp
     public function getBiography()
     {
         return $this->biography;
+    }
+
+    /**
+     * Add submissions
+     *
+     * @param Cfp\CfpBundle\Entity\Submission $submissions
+     */
+    public function addSubmussion(\Cfp\CfpBundle\Entity\Submission $submissions)
+    {
+        $this->submissions[] = $submissions;
+    }
+
+    /**
+     * Get submissions
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getSubmissions()
+    {
+        return $this->submissions;
     }
 }

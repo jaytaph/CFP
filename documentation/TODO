@@ -21,6 +21,7 @@ Todo:
 [ ] When we use our security context, make sure when it's expired (ie: string("anon.")), things don't break.
 [X] Update layout HTML of cfp
 [ ] When CFP is not open, we should not be allowed to add CFP. Also we should not add the Add CFP links?
+[ ] Talks should be COPIED, not linked when they are added as a submission
 
 
 Bugs & issues:

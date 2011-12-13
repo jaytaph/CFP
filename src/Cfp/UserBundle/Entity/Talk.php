@@ -189,4 +189,20 @@ class Talk
     {
         return $this->owners;
     }
+
+    public function getSubmitCount() {
+        // @TODO: Add logic
+        return rand(1,10);
+    }
+
+    public function getAcceptedCount() {
+        // @TODO: Add logic
+        return rand(1,10);
+    }
+
+    public function getRejectedCount() {
+        // @TODO: Add logic
+        return rand(1,10);
+    }
+
 }

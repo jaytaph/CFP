@@ -111,9 +111,9 @@ class Conference
     protected $hosts;
 
     /**
-     * @ORM\OneToMany(targetEntity="Cfp\ConferenceBundle\Entity\Conference", mappedBy="conference")
+     * @ORM\OneToMany(targetEntity="Cfp\CfpBundle\Entity\Registration", mappedBy="conference")
      */
-    protected $cfps;
+    protected $registrations;
     
     /**
      * Get id
@@ -345,23 +345,12 @@ class Conference
         return $this->hosts;
     }
 
-    /**
-     * Set cfps
-     *
-     * @param Cfp\ConferenceBundle\Entity\Conference $cfps
-     */
-    public function setCfps(\Cfp\ConferenceBundle\Entity\Conference $cfps)
-    {
-        $this->cfps = $cfps;
+    public function getSubmissionCount() {
+        $count = 0;
+        foreach ($this->getRegistrations() as $registration) {
+              $count += count($registration->getSubmissions());
+        }
+        return $count;
     }
 
-    /**
-     * Get cfps
-     *
-     * @return Cfp\ConferenceBundle\Entity\Conference 
-     */
-    public function getCfps()
-    {
-        return $this->cfps;
-    }
 }

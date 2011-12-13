@@ -1,6 +1,6 @@
 {% extends '::layout.html.twig' %}
 
-{% block title %}CfpTalk list{% endblock %}
+{% block title %}Submission list{% endblock %}
 
 {% block body %}
 <h1>All submitted talks for {{ cfp.conference.name }} </h1>
@@ -16,10 +16,10 @@
     <tbody>
     {% for entity in entities %}
         <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
-            <td><a href="{{ path('CfpCfpBundle_show_cfp_talk', { 'cfp_id': 1, 'id': entity.id }) }}">{{ entity.talk.title }}</a></td>
+            <td><a href="{{ path('CfpCfpBundle_show_submission', { 'registration_id': registration.id, 'id': entity.id }) }}">{{ entity.talk.title }}</a></td>
             <td>{% if entity.dtcreated %}{{ entity.dtcreated|date('Y-m-d H:i:s') }}{% endif%}</td>
             <td>
-                        [ <a href="{{ path('CfpCfpBundle_edit_cfp_talk', { 'cfp_id': 1, 'id': entity.id }) }}">edit</a> ]
+                        [ <a href="{{ path('CfpCfpBundle_edit_submission', { 'registration': registration.id, 'id': entity.id }) }}">edit</a> ]
             </td>
         </tr>
     {% endfor %}
@@ -29,7 +29,7 @@
 
 <ul>
     <li>
-        <a href="{{ path('CfpCfpBundle_new_cfp_talk', {'cfp_id': 1}) }}">
+        <a href="{{ path('CfpCfpBundle_new_submission', {'registration_id': registration.id}) }}">
             Create a new entry
         </a>
     </li>

@@ -1,16 +1,16 @@
 User
 ====
 - user can add multiple biographies
-- user can add multiple talks
+- user can add multiple talks (template)
 
 Submitting to a conference CfP
 ==============================
 - Can only take place when the CfP is open for the conference
-- User submits a biography to the conference
-- User selects a talk to submit
+- User registers a biography and other info to the conference
+- User selects a talk to submit -> talk submission
 - User add additional information if needed (remarks etc)
-- Talk can be edited or retracted while CfP is open
-- User should be able to see all submission ever done, plus statistics on acceptance / rejections etc
+- Talk can be edited or retracted while CfP is open. Does not change the actual "talk" template used
+- User should be able to see all submissions ever done, plus statistics on acceptance / rejections etc
 
 Conferences
 ===========

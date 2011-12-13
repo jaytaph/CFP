@@ -1,0 +1,26 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Submission edit{% endblock %}
+
+{% block body %}
+<form action="{{ path('CfpCfpBundle_update_submission', { 'registration_id': registration.id, 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    {{ form_widget(edit_form) }}
+    <p>
+        <button type="submit">Edit</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('CfpCfpBundle_show_my_submissions', {'registration_id': registration.id}) }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('CfpCfpBundle_delete_submission', { 'registration_id': registration.id, 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

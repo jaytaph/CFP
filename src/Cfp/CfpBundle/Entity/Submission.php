@@ -1,14 +1,14 @@
 <?php
-// src/Cfp/CfpBundle/Entity/CfpTalk.php
+// src/Cfp/CfpBundle/Entity/Submission.php
 
 namespace Cfp\CfpBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="Cfp\CfpBundle\Repository\CfpTalkRepository")
- * @ORM\Table(name="cfptalk")
+ * @ORM\Entity(repositoryClass="Cfp\CfpBundle\Repository\SubmissionRepository")
+ * @ORM\Table(name="submission")
  */
-class CfpTalk
+class Submission
 {
     public function __construct()
     {
@@ -24,9 +24,9 @@ class CfpTalk
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Cfp\CfpBundle\Entity\Cfp", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="Cfp\CfpBundle\Entity\Registration", inversedBy="id")
      */
-    protected $cfp;
+    protected $registration;
 
     /**
      * @ORM\ManyToOne(targetEntity="Cfp\UserBundle\Entity\Talk")
@@ -42,7 +42,6 @@ class CfpTalk
      * @ORM\Column(type="datetime")
      */
     protected $dt_created;
-
 
     /**
      * Get id
@@ -95,23 +94,23 @@ class CfpTalk
     }
 
     /**
-     * Set cfp
+     * Set registration
      *
-     * @param Cfp\CfpBundle\Entity\Cfp $cfp
+     * @param Cfp\CfpBundle\Entity\Registration $registration
      */
-    public function setCfp(\Cfp\CfpBundle\Entity\Cfp $cfp)
+    public function setRegistration(\Cfp\CfpBundle\Entity\Registration $registration)
     {
-        $this->cfp = $cfp;
+        $this->registration = $registration;
     }
 
     /**
-     * Get cfp
+     * Get registration
      *
-     * @return Cfp\CfpBundle\Entity\Cfp 
+     * @return Cfp\CfpBundle\Entity\Registration 
      */
-    public function getCfp()
+    public function getRegistration()
     {
-        return $this->cfp;
+        return $this->registration;
     }
 
     /**

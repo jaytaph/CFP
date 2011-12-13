@@ -19,10 +19,10 @@
             <td><a href="{{ path('CfpConferenceBundle_show_conference', { 'tag': conference.tag }) }}">{{ conference.name }}</a></td>
             <td>{{ conference.dtstart|date('F j, Y') }}</td>
             <td>{{ cfp_status(conference, true) }}</td>
-            <td>N/A</td>
+            <td>{{ conference.getRegistrationCount }} / {{ conference.getSubmissionCount }}</td>
             <td>
                 {% if cfp_is_open(conference) %}
-                [ <a href="{{ path('CfpCfpBundle_new_cfp', {'conferencetag': conference.tag}) }}">Add CFP</a> ]
+                [ <a href="{{ path('CfpCfpBundle_new_registration', {'tag': conference.tag}) }}">Add CFP</a> ]
                 {% endif %}
             </td>
         </tr>

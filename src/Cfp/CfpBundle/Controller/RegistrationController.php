@@ -4,19 +4,19 @@ namespace Cfp\CfpBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Cfp\CfpBundle\Entity\Cfp;
-use Cfp\CfpBundle\Form\CfpType;
+use Cfp\CfpBundle\Entity\Registration;
+use Cfp\CfpBundle\Form\RegistrationType;
 use \Cfp\ConferenceBundle\Entity\Conference;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
- * Cfp controller.
+ * Registration controller.
  *
  */
-class CfpController extends Controller
+class RegistrationController extends Controller
 {
     /**
-     * Lists all Cfp entities.
+     * Lists all registration entities.
      *
      */
     public function indexAction()
@@ -24,38 +24,38 @@ class CfpController extends Controller
         $user = $this->get('security.context')->getToken()->getUser();
 
 //        $em = $this->getDoctrine()->getEntityManager();
-//        $entity = $em->getRepository('CfpCfpBundle:Cfp')->findOneById(1);
+//        $entity = $em->getRepository('CfpCfpBundle:Registration')->findOneById(1);
 
-//        foreach ($entity->getCfpTalks() as $cfptalk) {
-//            print_r($cfptalk->getRemarks());
+//        foreach ($entity->getSubmissions() as $submission) {
+//            print_r($submission->getRemarks());
 //            print "<hr>";
 //        }
 //        exit;
 //
-        $entities = $user->getCfps();
+        $entities = $user->getRegistrations();
 
-        return $this->render('CfpCfpBundle:Cfp:index.html.twig', array(
+        return $this->render('CfpCfpBundle:Registration:index.html.twig', array(
             'entities' => $entities
         ));
     }
 
     /**
-     * Finds and displays a Cfp entity.
+     * Finds and displays a registration entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('CfpCfpBundle:Cfp')->find($id);
+        $entity = $em->getRepository('CfpCfpBundle:Registration')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Cfp entity.');
+            throw $this->createNotFoundException('Unable to find registration entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('CfpCfpBundle:Cfp:show.html.twig', array(
+        return $this->render('CfpCfpBundle:Registration:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
 
@@ -63,16 +63,16 @@ class CfpController extends Controller
     }
 
     /**
-     * Displays a form to create a new Cfp entity.
+     * Displays a form to create a new registration entity.
      *
      */
-    public function newAction($conferencetag)
+    public function newAction($tag)
     {
-        $entity = new Cfp();
-        $form   = $this->createForm(new CfpType(), $entity);
+        $entity = new Registration();
+        $form   = $this->createForm(new RegistrationType(), $entity);
 
         $em = $this->getDoctrine()->getEntityManager();
-        $conference = $em->getRepository('CfpConferenceBundle:Conference')->findOneByTag($conferencetag);
+        $conference = $em->getRepository('CfpConferenceBundle:Conference')->findOneByTag($tag);
 
         if (!$conference) {
             throw $this->createNotFoundException('Unable to find conference.');
@@ -83,7 +83,7 @@ class CfpController extends Controller
             throw new AccessDeniedHttpException('Conference CFP is closed.');
         }
 
-        return $this->render('CfpCfpBundle:Cfp:new.html.twig', array(
+        return $this->render('CfpCfpBundle:Registration:new.html.twig', array(
             'entity' => $entity,
             'conference' => $conference,
             'form'   => $form->createView()
@@ -91,19 +91,19 @@ class CfpController extends Controller
     }
 
     /**
-     * Creates a new Cfp entity.
+     * Creates a new Registration entity.
      *
      */
-    public function createAction($conferencetag)
+    public function createAction($tag)
     {
-        $entity  = new Cfp();
+        $entity  = new Registration();
         $request = $this->getRequest();
-        $form    = $this->createForm(new CfpType(), $entity);
+        $form    = $this->createForm(new RegistrationType(), $entity);
         $form->bindRequest($request);
 
         // Fetch conference
         $em = $this->getDoctrine()->getEntityManager();
-        $conference = $em->getRepository('CfpConferenceBundle:Conference')->findOneByTag($conferencetag);
+        $conference = $em->getRepository('CfpConferenceBundle:Conference')->findOneByTag($tag);
         if (!$conference) {
             throw $this->createNotFoundException('Unable to find conference.');
         }
@@ -121,34 +121,45 @@ class CfpController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('CfpCfpBundle_show_cfp', array('cfp_id' => 1, 'id' => $entity->getId())));
+            // @TODO: Check if subject should be escaped...
+            // Add email to user
+            $message = \Swift_Message::newInstance()
+                ->setSubject('New CFP registration for ' . $entity->getRegistration()->getConference()->getName())
+                ->setFrom($this->container->getParameter('emails.contact_email'))
+                ->setTo($entity->GetUser()->getEmail())
+                ->setBody($this->renderView('CfpCfpBundle:Registration:submitEmail.txt.twig', array('entity' => $entity)));
+            $this->get('mailer')->send($message);
+
+            $this->get('session')->setFlash('notice', 'You have registered for CFP submissions!');
+
+            return $this->redirect($this->generateUrl('CfpCfpBundle_show_registration', array('id' => 1, 'id' => $entity->getId())));
             
         }
 
-        return $this->render('CfpCfpBundle:Cfp:new.html.twig', array(
+        return $this->render('CfpCfpBundle:Registration:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView()
         ));
     }
 
     /**
-     * Displays a form to edit an existing Cfp entity.
+     * Displays a form to edit an existing Registration entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('CfpCfpBundle:Cfp')->find($id);
+        $entity = $em->getRepository('CfpCfpBundle:Registration')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Cfp entity.');
+            throw $this->createNotFoundException('Unable to find registration entity.');
         }
 
-        $editForm = $this->createForm(new CfpType(), $entity);
+        $editForm = $this->createForm(new RegistrationType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('CfpCfpBundle:Cfp:edit.html.twig', array(
+        return $this->render('CfpCfpBundle:Registration:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -156,20 +167,20 @@ class CfpController extends Controller
     }
 
     /**
-     * Edits an existing Cfp entity.
+     * Edits an existing Registration entity.
      *
      */
     public function updateAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('CfpCfpBundle:Cfp')->find($id);
+        $entity = $em->getRepository('CfpCfpBundle:Registration')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Cfp entity.');
+            throw $this->createNotFoundException('Unable to find registration entity.');
         }
 
-        $editForm   = $this->createForm(new CfpType(), $entity);
+        $editForm   = $this->createForm(new RegistrationType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -180,10 +191,10 @@ class CfpController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('CfpCfpBundle_show_my_cfps', array('cfp_id' => 1)));
+            return $this->redirect($this->generateUrl('CfpCfpBundle_show_my_registrations', array('id' => 1)));
         }
 
-        return $this->render('CfpCfpBundle:Cfp:edit.html.twig', array(
+        return $this->render('CfpCfpBundle:Registration:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -191,7 +202,7 @@ class CfpController extends Controller
     }
 
     /**
-     * Deletes a Cfp entity.
+     * Deletes a Registration entity.
      *
      */
     public function deleteAction($id)
@@ -203,10 +214,10 @@ class CfpController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
-            $entity = $em->getRepository('CfpCfpBundle:Cfp')->find($id);
+            $entity = $em->getRepository('CfpCfpBundle:Registration')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Cfp entity.');
+                throw $this->createNotFoundException('Unable to find registration entity.');
             }
 
             $em->remove($entity);

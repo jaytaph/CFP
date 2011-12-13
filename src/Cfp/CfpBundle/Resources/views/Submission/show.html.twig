@@ -1,6 +1,6 @@
 {% extends '::layout.html.twig' %}
 
-{% block title %}CfpTalk{% endblock %}
+{% block title %}Submission{% endblock %}
 
 {% block body %}
 <table class="record_properties">
@@ -26,17 +26,17 @@
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('CfpCfpBundle_show_my_cfp_talks', {'cfp_id': 1}) }}">
+        <a href="{{ path('CfpCfpBundle_show_my_submissions', {'registration_id': registration.id}) }}">
             Back to the list
         </a>
     </li>
     <li>
-        <a href="{{ path('CfpCfpBundle_edit_cfp_talk', { 'cfp_id': 1, 'id': entity.id }) }}">
+        <a href="{{ path('CfpCfpBundle_edit_submission', { 'registration_id': registration.id, 'id': entity.id }) }}">
             Edit
         </a>
     </li>
     <li>
-        <form action="{{ path('CfpCfpBundle_delete_cfp_talk', { 'cfp_id': 1, 'id': entity.id }) }}" method="post">
+        <form action="{{ path('CfpCfpBundle_delete_submission', { 'registration_id': registration.id, 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}
             <button type="submit">Delete</button>
         </form>

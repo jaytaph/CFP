@@ -1,12 +1,12 @@
 {% extends '::layout.html.twig' %}
 
-{% block title %}Cfp edit{% endblock %}
+{% block title %}Registration edit{% endblock %}
 
 {% block body %}
 
-<h1>Cfp edit</h1>
+<h1>Registration edit</h1>
 
-<form action="{{ path('CfpCfpBundle_update_cfp', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+<form action="{{ path('CfpCfpBundle_update_registration', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
     {{ form_widget(edit_form) }}
     <p>
         <button type="submit">Edit</button>
@@ -15,12 +15,12 @@
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('CfpCfpBundle_show_my_cfps') }}">
+        <a href="{{ path('CfpCfpBundle_show_my_registrations') }}">
             Back to the list
         </a>
     </li>
     <li>
-        <form action="{{ path('CfpCfpBundle_delete_cfp', { 'id': entity.id }) }}" method="post">
+        <form action="{{ path('CfpCfpBundle_delete_registration', { 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}
             <button type="submit">Delete</button>
         </form>

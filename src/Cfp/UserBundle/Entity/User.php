@@ -25,9 +25,9 @@ class User extends BaseUser
     protected $biographies;
 
     /**
-     * @ORM\OneToMany(targetEntity="Cfp\CfpBundle\Entity\Cfp", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Cfp\CfpBundle\Entity\Registration", mappedBy="user")
      */
-    protected $cfps;
+    protected $registrations;
 
     /**
      * @ORM\ManyToMany(targetEntity="Cfp\ConferenceBundle\Entity\Conference", mappedBy="hosts")
@@ -72,26 +72,6 @@ class User extends BaseUser
     }
 
     /**
-     * Add cfps
-     *
-     * @param Cfp\CfpBundle\Entity\Cfp $cfps
-     */
-    public function addCfp(\Cfp\CfpBundle\Entity\Cfp $cfps)
-    {
-        $this->cfps[] = $cfps;
-    }
-
-    /**
-     * Get cfps
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getCfps()
-    {
-        return $this->cfps;
-    }
-
-    /**
      * Add conferences
      *
      * @param Cfp\ConferenceBundle\Entity\Conference $conferences
@@ -109,5 +89,25 @@ class User extends BaseUser
     public function getConferences()
     {
         return $this->conferences;
+    }
+
+    /**
+     * Add registrations
+     *
+     * @param Cfp\CfpBundle\Entity\Registration $registrations
+     */
+    public function addRegistration(\Cfp\CfpBundle\Entity\Registration $registrations)
+    {
+        $this->registrations[] = $registrations;
+    }
+
+    /**
+     * Get registrations
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getRegistrations()
+    {
+        return $this->registrations;
     }
 }

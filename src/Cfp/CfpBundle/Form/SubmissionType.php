@@ -5,7 +5,7 @@ namespace Cfp\CfpBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class CfpTalkType extends AbstractType
+class SubmissionType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
@@ -17,6 +17,6 @@ class CfpTalkType extends AbstractType
 
     public function getName()
     {
-        return 'cfp_cfpbundle_cfptalktype';
+        return 'cfp_cfpbundle_submission';
     }
 }
