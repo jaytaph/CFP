@@ -47,6 +47,57 @@ class Conference
          return self::CLOSED;
      }
 
+    public function getSubmissionCount() {
+        $count = 0;
+        foreach ($this->getRegistrations() as $registration) {
+              $count += count($registration->getSubmissions());
+        }
+        return $count;
+    }
+
+    public function getRegistrationCount() {
+        return count($this->getRegistrations());
+    }
+
+    /**
+     * Add hosts
+     *
+     * @param Cfp\UserBundle\Entity\User $host
+     */
+    public function addHost(\Cfp\UserBundle\Entity\User $host)
+    {
+        $this->hosts[] = $host;
+    }
+
+    /**
+     * Add admin
+     *
+     * @param Cfp\UserBundle\Entity\User $admin
+     */
+    public function addAdmin(\Cfp\UserBundle\Entity\User $admin)
+    {
+        $this->admins[] = $admin;
+
+        // Will also add us as a host
+        $this->addHost($admin);
+    }
+
+
+    // Returns true when the user is a host for the conference
+    public function isHost(\Cfp\UserBundle\Entity\User $user = null) {
+        if ($user == null) return false;
+
+        return $this->hosts->exists(function($key, $host) use($user) { return ($user == $host); });
+    }
+
+    // Returns true when the user is an admin for the conference
+    public function isAdmin(\Cfp\UserBundle\Entity\User $user = null) {
+        if ($user == null) return false;
+
+        return $this->admins->exists(function($key, $admin) use($user) { return ($user == $admin); });
+    }
+
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -105,16 +156,23 @@ class Conference
     protected $geo_lat;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Cfp\UserBundle\Entity\User", inversedBy="conferences", fetch="EXTRA_LAZY")
+     * @ORM\ManyToMany(targetEntity="Cfp\UserBundle\Entity\User", inversedBy="conference_host", fetch="EXTRA_LAZY")
      * @ORM\JoinTable(name="conference_hosts")
      */
     protected $hosts;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Cfp\UserBundle\Entity\User", inversedBy="conference_admin", fetch="EXTRA_LAZY")
+     * @ORM\JoinTable(name="conference_admins")
+     */
+    protected $admins;
+
+    /**
      * @ORM\OneToMany(targetEntity="Cfp\CfpBundle\Entity\Registration", mappedBy="conference")
      */
     protected $registrations;
-    
+
+
     /**
      * Get id
      *
@@ -143,6 +201,26 @@ class Conference
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set tag
+     *
+     * @param string $tag
+     */
+    public function setTag($tag)
+    {
+        $this->tag = $tag;
+    }
+
+    /**
+     * Get tag
+     *
+     * @return string 
+     */
+    public function getTag()
+    {
+        return $this->tag;
     }
 
     /**
@@ -306,26 +384,6 @@ class Conference
     }
 
     /**
-     * Set tag
-     *
-     * @param string $tag
-     */
-    public function setTag($tag)
-    {
-        $this->tag = $tag;
-    }
-
-    /**
-     * Get tag
-     *
-     * @return string 
-     */
-    public function getTag()
-    {
-        return $this->tag;
-    }
-
-    /**
      * Add hosts
      *
      * @param Cfp\UserBundle\Entity\User $hosts
@@ -345,18 +403,15 @@ class Conference
         return $this->hosts;
     }
 
-    public function getSubmissionCount() {
-        $count = 0;
-        foreach ($this->getRegistrations() as $registration) {
-              $count += count($registration->getSubmissions());
-        }
-        return $count;
+    /**
+     * Get admins
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAdmins()
+    {
+        return $this->admins;
     }
-
-    public function getRegistrationCount() {
-        return count($this->getRegistrations());
-    }
-
 
     /**
      * Add registrations

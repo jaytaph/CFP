@@ -14,6 +14,25 @@
         </div>
 
         <div>
+            <h3>Administrators:</h3>
+            <ul>
+            {% for admin in conference.admins %}
+            <li>{{ admin.username }}</li>
+            {% endfor %}
+            <ul>
+        </div>
+
+        <div>
+            <h3 >Hosts:</h3>
+
+            <ul>
+            {% for host in conference.hosts %}
+            <li>{{ host.username }}</li>
+            {% endfor %}
+            <ul>
+        </div>
+
+        <div>
             <h3 >Location:</h3>
             <p>{{ google_map_container(map) }}</p>
             {{ google_map_js(map) }}
@@ -24,6 +43,16 @@
         {% if cfp_is_open(conference) %}
         - [ <a href="{{ path('CfpCfpBundle_new_registration', {'tag': conference.tag}) }}">Add CFP</a> ]
         {% endif %}
+
+        {% if conference.isAdmin(app.user) %}
+        - [ Admin ]
+        {% endif %}
+
+        {% if conference.isHost(app.user) %}
+        - [ Hosts ]
+        {% endif %}
+
+
 
         </div>
     </article>

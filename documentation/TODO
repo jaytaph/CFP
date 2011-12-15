@@ -7,7 +7,7 @@ Todo:
 [X] Let user add / update talks
         X multiple type of talks (workshops, talk, estimated time)
         X links to joind.in / slideshare / etc
-[X] Let user create conference
+[X] Let user create conference -> will become host admins
 [ ] Let user add other users as "conference host"
 [X] Let user add talks to conferences
         X (only during cfp opening)
@@ -22,6 +22,7 @@ Todo:
 [X] Update layout HTML of cfp
 [ ] When CFP is not open, we should not be allowed to add CFP. Also we should not add the Add CFP links?
 [ ] Talks should be COPIED, not linked when they are added as a submission
+[ ] Users should be visible for others (/user/jthijssen etc)
 
 
 Bugs & issues:

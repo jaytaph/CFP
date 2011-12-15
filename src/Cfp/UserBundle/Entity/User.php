@@ -33,7 +33,13 @@ class User extends BaseUser
      * @ORM\ManyToMany(targetEntity="Cfp\ConferenceBundle\Entity\Conference", mappedBy="hosts")
      * @ORM\JoinTable(name="conference_hosts")
      */
-    protected $conferences;
+    protected $conferences_host;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Cfp\ConferenceBundle\Entity\Conference", mappedBy="admins")
+     * @ORM\JoinTable(name="conference_admins")
+     */
+    protected $conferences_admin;
 
 
     public function __construct()
@@ -109,5 +115,25 @@ class User extends BaseUser
     public function getRegistrations()
     {
         return $this->registrations;
+    }
+
+    /**
+     * Get conferences_host
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getConferencesHost()
+    {
+        return $this->conferences_host;
+    }
+
+    /**
+     * Get conferences_admin
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getConferencesAdmin()
+    {
+        return $this->conferences_admin;
     }
 }

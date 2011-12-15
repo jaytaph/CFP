@@ -127,7 +127,7 @@ class ConferenceController extends Controller
         $form->bindRequest($request);
 
         $user = $this->get('security.context')->getToken()->getUser();
-        $entity->addUser($user);
+        $entity->addAdmin($user);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
