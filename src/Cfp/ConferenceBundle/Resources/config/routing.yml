@@ -5,3 +5,7 @@ CfpConferenceBundle_Conferences:
 CfpConferenceBundle_Admin:
     resource: "@CfpConferenceBundle/Resources/config/routing/admin.yml"
     prefix:   /conference/{tag}
+
+CfpConferenceBundle_Host:
+    resource: "@CfpConferenceBundle/Resources/config/routing/host.yml"
+    prefix:   /conference/{tag}

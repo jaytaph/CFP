@@ -1,0 +1,5 @@
+CfpConferenceBundle_conference_host:
+    pattern:  /host
+    defaults: { _controller: CfpConferenceBundle:Host:show }
+    requirements:
+        _method:  GET

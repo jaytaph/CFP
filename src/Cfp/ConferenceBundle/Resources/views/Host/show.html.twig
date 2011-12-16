@@ -1,6 +1,6 @@
 {% extends '::layout.html.twig' %}
 
-{% block title %}Admin page for {{ conference.name }}{% endblock %}
+{% block title %}Host page for {{ conference.name }}{% endblock %}
 
 {% block body %}
     <article class="conference">
@@ -8,46 +8,6 @@
                 <h2>{{ conference.name }}</h2>
             </header>
 
-        <div>
-            <h3>Administrators:</h3>
-            <ul>
-            {% for admin in conference.admins %}
-              <li>{{ admin.username }}
-                  <form method="post" action="{{ path('CfpConferenceBundle_conference_admin_remove_admin', {'tag' : conference.tag, 'username' : admin.username}) }}">
-                      <button type=submit>Remove</button>
-                  </form>
-              </li>
-            {% endfor %}
-
-            <form action="{{ path('CfpConferenceBundle_conference_admin_add_admin', {'tag' : conference.tag}) }}" method="post">
-                {{ form_rest(admin_form) }}
-                <p>
-                    <button type="submit">Add</button>
-                </p>
-            </form>
-
-        </div>
-
-        <div>
-            <h3 >Hosts:</h3>
-
-            <ul>
-            {% for host in conference.hosts %}
-                <li>{{ host.username }}
-                <form method="post" action="{{ path('CfpConferenceBundle_conference_admin_remove_host', {'tag' : conference.tag, 'username' : host.username}) }}">
-                    <button type=submit>Remove</button>
-                </form>
-                </li>
-            {% endfor %}
-            <ul>
-
-            <form action="{{ path('CfpConferenceBundle_conference_admin_add_host', {'tag' : conference.tag}) }}" method="post">
-                {{ form_rest(host_form) }}
-                <p>
-                    <button type="submit">Add</button>
-                </p>
-            </form>
-        </div>
         
         <br/>
         [ <a href="{{ path('CfpConferenceBundle_show_conference', { 'tag' : conference.tag }) }}">Back</a> ]
