@@ -45,11 +45,11 @@
         {% endif %}
 
         {% if conference.isAdmin(app.user) %}
-        - [ Admin ]
+        - [ <a href="{{ path('CfpConferenceBundle_conference_admin', {'tag': conference.tag}) }}">Admin</a> ]
         {% endif %}
 
         {% if conference.isHost(app.user) %}
-        - [ Hosts ]
+        - [ Host ]
         {% endif %}
 
 

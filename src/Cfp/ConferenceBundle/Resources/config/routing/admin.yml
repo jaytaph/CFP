@@ -1,0 +1,29 @@
+CfpConferenceBundle_conference_admin:
+    pattern:  /admin
+    defaults: { _controller: CfpConferenceBundle:Admin:show }
+    requirements:
+        _method:  GET
+
+CfpConferenceBundle_conference_admin_remove_host:
+    pattern:  /admin/remove/host
+    defaults: { _controller: CfpConferenceBundle:Admin:removeHost }
+    requirements:
+        _method:  POST
+
+CfpConferenceBundle_conference_admin_remove_admin:
+    pattern:  /admin/remove/admin
+    defaults: { _controller: CfpConferenceBundle:Admin:removeAdmin }
+    requirements:
+        _method:  POST
+
+CfpConferenceBundle_conference_admin_add_admin:
+    pattern:  /admin/add/admin
+    defaults: { _controller: CfpConferenceBundle:Admin:addAdmin }
+    requirements:
+        _method:  POST
+
+CfpConferenceBundle_conference_admin_add_host:
+    pattern:  /admin/add/host
+    defaults: { _controller: CfpConferenceBundle:Admin:addHost }
+    requirements:
+        _method:  POST

@@ -1,3 +1,7 @@
-CfgConferenceBundle_Conferences:
+CfpConferenceBundle_Conferences:
     resource: "@CfpConferenceBundle/Resources/config/routing/conference.yml"
     prefix:   /
+
+CfpConferenceBundle_Admin:
+    resource: "@CfpConferenceBundle/Resources/config/routing/admin.yml"
+    prefix:   /conference/{tag}

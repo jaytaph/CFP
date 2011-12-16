@@ -82,6 +82,24 @@ class Conference
         $this->addHost($admin);
     }
 
+    public function removeAdmin(\Cfp\UserBundle\Entity\User $user)
+    {
+        foreach ($this->admins as $k => $v) {
+            if ($user == $v) unset($this->admins[$k]);
+        }
+    }
+
+    public function removeHost(\Cfp\UserBundle\Entity\User $user)
+    {
+        foreach ($this->hosts as $k => $v) {
+            if ($user == $v) unset($this->hosts[$k]);
+        }
+
+        // Also remove as admin.. we can't be an admin, and not be a host
+        $this->removeAdmin($user);
+    }
+
+
 
     // Returns true when the user is a host for the conference
     public function isHost(\Cfp\UserBundle\Entity\User $user = null) {
