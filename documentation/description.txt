@@ -2,6 +2,8 @@ User
 ====
 - user can add multiple biographies
 - user can add multiple talks (template)
+- user can add conference
+
 
 Submitting to a conference CfP
 ==============================
@@ -11,6 +13,7 @@ Submitting to a conference CfP
 - User add additional information if needed (remarks etc)
 - Talk can be edited or retracted while CfP is open. Does not change the actual "talk" template used
 - User should be able to see all submissions ever done, plus statistics on acceptance / rejections etc
+
 
 Conferences
 ===========
@@ -24,6 +27,24 @@ Conferences
 - Statistics page with all votes are available
 - Conference hosts should be able to mass-mail acceptance / rejections mails
 
+--- Flow:
+ - User registers
+ - User creates a conference
+ - Conferences opens cfp
+ - System emails all users (who have registered for emails)
+ - Users can submit talks to conference
+ - Conference cfp closes
+ - System emails conference hosts
+ - Conference hosts votes for talks (+1, 0, -1)
+ - When done, conference admin selects talks
+ - When done, system emails accepted talks / users
+ - When done, system emails rejected talks / users
+
+--- Public voting:
+ - User submits talk
+ - Other users can vote +1, 0, -1
+   - Option: Votes are not shown
+   - Option: Author is not shown
 
 
 Problems

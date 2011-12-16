@@ -47,4 +47,5 @@ Low prio:
 [ ] Let conference hosts export cfp information on CSV or other format
 [ ] Let user subscribe for reminders when call-for-papers are opened
 [ ] /my/talks: Add number of times a talk is submitted to a conference
+[ ] Only one conference host (conference admin) can view vote status, others can only see their own votes
 
