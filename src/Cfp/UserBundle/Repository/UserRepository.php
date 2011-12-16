@@ -50,7 +50,7 @@ class ConferenceUserFilter extends \FilterIterator
     }
 
     function key() {
-        return $this->current()->getEmail();
+        return $this->current()->getUserName();
     }
 }
 

@@ -8,7 +8,7 @@ Todo:
         X multiple type of talks (workshops, talk, estimated time)
         X links to joind.in / slideshare / etc
 [X] Let user create conference -> will become host admins
-[ ] Let user add other users as "conference host"
+[X] Let user add other users as "conference host"
 [X] Let user add talks to conferences
         X (only during cfp opening)
 [X] Send email to user that talk was submitted

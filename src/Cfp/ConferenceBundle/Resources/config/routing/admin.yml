@@ -5,13 +5,13 @@ CfpConferenceBundle_conference_admin:
         _method:  GET
 
 CfpConferenceBundle_conference_admin_remove_host:
-    pattern:  /admin/remove/host
+    pattern:  /admin/remove/host/{username}
     defaults: { _controller: CfpConferenceBundle:Admin:removeHost }
     requirements:
         _method:  POST
 
 CfpConferenceBundle_conference_admin_remove_admin:
-    pattern:  /admin/remove/admin
+    pattern:  /admin/remove/admin/{username}
     defaults: { _controller: CfpConferenceBundle:Admin:removeAdmin }
     requirements:
         _method:  POST

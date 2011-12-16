@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 // @TODO: One should not be here when we are not logged in
 
+// @TODO: Need work on refactoring.. the add/remove host/admin are just stupid
+
 class AdminController extends Controller
 {
     public function showAction($tag)
@@ -30,14 +32,14 @@ class AdminController extends Controller
         ));
     }
 
-    public function removeAdminAction($tag)
+    public function removeAdminAction($tag, $username)
     {
-        return $this->_postMutateUser($tag, "admin", "remove");
+        return $this->_postMutateUser($tag, "admin", "remove", $username);
     }
 
-    public function removeHostAction($tag)
+    public function removeHostAction($tag, $username)
     {
-        return $this->_postMutateUser($tag, "host", "remove");
+        return $this->_postMutateUser($tag, "host", "remove", $username);
     }
 
     public function addHostAction($tag)
@@ -55,25 +57,21 @@ class AdminController extends Controller
 
     // Generate admin dropdown without the current admins for the conference
     protected function _getAdminForm(\Cfp\ConferenceBundle\Entity\Conference $conference) {
-        $em = $this->getDoctrine()->getEntityManager();
         return $this->createFormBuilder()
-            ->add('user', 'choice', array('choices' => $em->getRepository('CfpUserBundle:User')->findAllExceptAdmins($conference)))
-            ->getForm()
-        ;
+            ->add('user', 'text')
+            ->getForm();
     }
 
     // Generate host dropdown without the current hosts for the conference
     protected function _getHostForm(\Cfp\ConferenceBundle\Entity\Conference $conference) {
-        $em = $this->getDoctrine()->getEntityManager();
         return $this->createFormBuilder()
-            ->add('user', 'choice', array('choices' => $em->getRepository('CfpUserBundle:User')->findAllExceptHosts($conference)))
-            ->getForm()
-        ;
+            ->add('user', 'text')
+            ->getForm();
     }
 
 
     // Gets information from the specified forms,
-    protected function _postMutateUser($tag, $method, $action) {
+    protected function _postMutateUser($tag, $method, $action, $username = null) {
         if ($this->getRequest()->getMethod() != 'POST') {
             throw new \Symfony\Component\Routing\Exception\MethodNotAllowedException("Must be posted");
         }
@@ -93,6 +91,7 @@ class AdminController extends Controller
             throw $this->createNotFoundException('Unable to find this conference.');
         }
 
+        // @TODO: Getting ridiculous again. Needs refactoring..
 
         // Generate correct form
         if ($method == "admin") {
@@ -105,17 +104,24 @@ class AdminController extends Controller
             $data = $host_form->getData();
         }
 
-        return $this->_mutateUser($conference, $method, $action, $data['user']);
+        return $this->_mutateUser($conference, $method, $action, $action == "remove" ? $username : $data['user']);
     }
 
 
     protected function _mutateUser($conference, $method, $action, $username)
     {
+        // Sanity check on the name
+        if (! $username) {
+            throw new \InvalidArgumentException("Need a username");
+        }
+
         // Find and check user
         $em = $this->getDoctrine()->getEntityManager();
         $user = $em->getRepository('CfpUserBundle:User')->findOneByUsername($username);
         if (!$user) {
-            throw $this->createNotFoundException('Unable to find the user.');
+            // Not being able to find the user should not result in an exception
+            $this->get('session')->setFlash('notice', 'Unable to find user');
+            return $this->redirect($this->generateUrl('CfpConferenceBundle_conference_admin', array('tag' => $conference->getTag())));
         }
 
         // Do not allow to remove yourself as an admin
@@ -128,13 +134,17 @@ class AdminController extends Controller
         $method = $action . ucfirst(strtolower($method));
 
         // Call method and persist
-        $conference->$method($user);
+        $result = $conference->$method($user);
         $em->persist($conference);
         $em->flush();
 
         // Set flash banner
         if ($action == "add") {
-            $this->get('session')->setFlash('notice', 'User has been added');
+            if ($result) {
+                $this->get('session')->setFlash('notice', 'User has been added');
+            } else {
+                $this->get('session')->setFlash('notice', 'User already has been added');
+            }
         } else {
             $this->get('session')->setFlash('notice', 'User has been removed');
         }

@@ -66,6 +66,7 @@ class Conference
      */
     public function addHost(\Cfp\UserBundle\Entity\User $host)
     {
+        if ($this->isHost($host)) return false;
         $this->hosts[] = $host;
     }
 
@@ -76,10 +77,13 @@ class Conference
      */
     public function addAdmin(\Cfp\UserBundle\Entity\User $admin)
     {
+        if ($this->isAdmin($admin)) return false;
+
         $this->admins[] = $admin;
 
         // Will also add us as a host
         $this->addHost($admin);
+        return true;
     }
 
     public function removeAdmin(\Cfp\UserBundle\Entity\User $user)
@@ -87,6 +91,7 @@ class Conference
         foreach ($this->admins as $k => $v) {
             if ($user == $v) unset($this->admins[$k]);
         }
+        return true;
     }
 
     public function removeHost(\Cfp\UserBundle\Entity\User $user)
@@ -97,6 +102,7 @@ class Conference
 
         // Also remove as admin.. we can't be an admin, and not be a host
         $this->removeAdmin($user);
+        return true;
     }
 
 
