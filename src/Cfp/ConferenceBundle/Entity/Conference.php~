@@ -60,6 +60,69 @@ class Conference
     }
 
     /**
+     * Add hosts
+     *
+     * @param Cfp\UserBundle\Entity\User $host
+     */
+    public function addHost(\Cfp\UserBundle\Entity\User $host)
+    {
+        if ($this->isHost($host)) return false;
+        $this->hosts[] = $host;
+    }
+
+    /**
+     * Add admin
+     *
+     * @param Cfp\UserBundle\Entity\User $admin
+     */
+    public function addAdmin(\Cfp\UserBundle\Entity\User $admin)
+    {
+        if ($this->isAdmin($admin)) return false;
+
+        $this->admins[] = $admin;
+
+        // Will also add us as a host
+        $this->addHost($admin);
+        return true;
+    }
+
+    public function removeAdmin(\Cfp\UserBundle\Entity\User $user)
+    {
+        foreach ($this->admins as $k => $v) {
+            if ($user == $v) unset($this->admins[$k]);
+        }
+        return true;
+    }
+
+    public function removeHost(\Cfp\UserBundle\Entity\User $user)
+    {
+        foreach ($this->hosts as $k => $v) {
+            if ($user == $v) unset($this->hosts[$k]);
+        }
+
+        // Also remove as admin.. we can't be an admin, and not be a host
+        $this->removeAdmin($user);
+        return true;
+    }
+
+
+
+    // Returns true when the user is a host for the conference
+    public function isHost(\Cfp\UserBundle\Entity\User $user = null) {
+        if ($user == null) return false;
+
+        return $this->hosts->exists(function($key, $host) use($user) { return ($user == $host); });
+    }
+
+    // Returns true when the user is an admin for the conference
+    public function isAdmin(\Cfp\UserBundle\Entity\User $user = null) {
+        if ($user == null) return false;
+
+        return $this->admins->exists(function($key, $admin) use($user) { return ($user == $admin); });
+    }
+
+
+    /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -132,7 +195,6 @@ class Conference
      * @ORM\OneToMany(targetEntity="Cfp\CfpBundle\Entity\Registration", mappedBy="conference")
      */
     protected $registrations;
-
 
     /**
      * Get id

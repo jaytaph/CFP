@@ -4,4 +4,4 @@ CfpCfpBundle_Registration:
 
 CfpCfpBundle_Submission:
     resource: "@CfpCfpBundle/Resources/config/routing/submission.yml"
-    prefix:   /my/registration/{id}
+    prefix:   /my/registration/{registration_id}

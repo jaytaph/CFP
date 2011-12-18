@@ -10,3 +10,8 @@ services:
            class: Cfp\ConferenceBundle\Twig\cfpStatusExtension
            tags:
                 -  { name: twig.extension }
+    talk.twig.extension:
+           class: Cfp\ConferenceBundle\Twig\talkExtension
+           tags:
+                -  { name: twig.extension }
+

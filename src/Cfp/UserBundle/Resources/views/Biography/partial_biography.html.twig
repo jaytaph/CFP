@@ -1,0 +1,25 @@
+    <article class="biography">
+            <header>
+                <h2>{{ biography.description }}</h2>
+            </header>
+        <div>
+            <h3 >Biography:</h3>
+            <p>{{ biography.biography }}</p>
+        </div>
+
+        <div>
+            <h3 >Profile picture:</h3>
+            <p><img height=250 src="/{{ biography.getWebPath }}"></p>
+        </div>
+
+        <div>
+            <h3 >Links:</h3>
+            <ul>
+                <li><a href="{{ biography.joindinurl }}">{{ biography.joindinurl }}</a>
+                <li><a href="{{ biography.slideshareurl }}">{{ biography.slideshareurl }}</a>
+                <li><a href="{{ biography.blogurl }}">{{ biography.blogurl }}</a>
+                <li><a href="{{ biography.homepageurl }}">{{ biography.homepageurl }}</a>
+            <ul>
+        </div>
+
+    </article>

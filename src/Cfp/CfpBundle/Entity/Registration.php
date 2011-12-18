@@ -183,4 +183,14 @@ class Registration
     {
         return $this->submissions;
     }
+
+    /**
+     * Add submissions
+     *
+     * @param Cfp\CfpBundle\Entity\Submission $submissions
+     */
+    public function addSubmission(\Cfp\CfpBundle\Entity\Submission $submissions)
+    {
+        $this->submissions[] = $submissions;
+    }
 }

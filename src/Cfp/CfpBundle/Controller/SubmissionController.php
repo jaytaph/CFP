@@ -32,17 +32,17 @@ class SubmissionController extends Controller
      * Finds and displays a submission entity.
      *
      */
-    public function showAction($id)
+    public function showAction($registration_id, $submission_id)
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('CfpCfpBundle:Submission')->find($id);
+        $entity = $em->getRepository('CfpCfpBundle:Submission')->find($submission_id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find submission entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($registration_id, $submission_id);
 
         return $this->render('CfpCfpBundle:Submission:show.html.twig', array(
             'entity'      => $entity,
@@ -120,18 +120,18 @@ class SubmissionController extends Controller
      * Displays a form to edit an existing submission entity.
      *
      */
-    public function editAction($id)
+    public function editAction($registration_id, $submission_id)
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('CfpCfpBundle:Submission')->find($id);
+        $entity = $em->getRepository('CfpCfpBundle:Submission')->find($submission_id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find submission entity.');
         }
 
         $editForm = $this->createForm(new SubmissionType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($registration_id, $submission_id);
 
         return $this->render('CfpCfpBundle:Submission:edit.html.twig', array(
             'entity'      => $entity,
@@ -144,18 +144,18 @@ class SubmissionController extends Controller
      * Edits an existing submission entity.
      *
      */
-    public function updateAction($id)
+    public function updateAction($registration_id, $submission_id)
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('CfpCfpBundle:Submission')->find($id);
+        $entity = $em->getRepository('CfpCfpBundle:Submission')->find($submission_id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find submission entity.');
         }
 
         $editForm   = $this->createForm(new SubmissionType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($registration_id, $submission_id);
 
         $request = $this->getRequest();
 
@@ -181,16 +181,16 @@ class SubmissionController extends Controller
      * Deletes a submission entity.
      *
      */
-    public function deleteAction($id)
+    public function deleteAction($registration_id, $submission_id)
     {
-        $form = $this->createDeleteForm($id);
+        $form = $this->createDeleteForm($registration_id, $submission_id);
         $request = $this->getRequest();
 
         $form->bindRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
-            $entity = $em->getRepository('CfpCfpBundle:Submission')->find($id);
+            $entity = $em->getRepository('CfpCfpBundle:Submission')->find($submission_id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find submission entity.');
@@ -203,10 +203,11 @@ class SubmissionController extends Controller
         return $this->redirect($this->generateUrl(''));
     }
 
-    private function createDeleteForm($id)
+    private function createDeleteForm($registration_id, $submission_id)
     {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
+        return $this->createFormBuilder(array('registration_id' => $registration_id, 'submission_id' => $submission_id))
+            ->add('registration_id', 'hidden')
+            ->add('submission_id', 'hidden')
             ->getForm()
         ;
     }

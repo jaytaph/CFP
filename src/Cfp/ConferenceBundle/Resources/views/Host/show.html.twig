@@ -8,6 +8,31 @@
                 <h2>{{ conference.name }}</h2>
             </header>
 
+        {% if conference.registrations|length > 0 %}
+        <div>
+            <table class="list">
+                <tr>
+                    <th>Talk</th>
+                    <th>Submitter</th>
+                    <th>Type</th>
+                    <th>Action</th>
+                </tr>
+                {% for registration in conference.registrations %}
+                    {% for submission in registration.submissions %}
+                        <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
+                            <td><a href="{{ path('CfpCfpBundle_show_submission', { 'registration_id' : submission.registration.id, 'submission_id': submission.id } ) }}">{{ submission.talk.title }}</a></td>
+                            <td><a href="#">{{ talk_print_owners(submission.talk) }}</a></td>
+                            <td>{{ submission.talk.type }}</td>
+                            <td>
+                                [ <a href="#">+1</a> ] [ <a href="#">0</a> ] [ <a href="#">-1</a> ]
+                                {#[ <a href="{{ path('CfpCfpBundle_show_my_submissions', { 'registration_id': entity.id }) }}">show talks</a> ]#}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+            </table>
+        </div>
+        {% endif %}
         
         <br/>
         [ <a href="{{ path('CfpConferenceBundle_show_conference', { 'tag' : conference.tag }) }}">Back</a> ]

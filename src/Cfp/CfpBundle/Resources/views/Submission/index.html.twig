@@ -16,10 +16,10 @@
     <tbody>
     {% for entity in entities %}
         <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
-            <td><a href="{{ path('CfpCfpBundle_show_submission', { 'registration_id': registration.id, 'id': entity.id }) }}">{{ entity.talk.title }}</a></td>
+            <td><a href="{{ path('CfpCfpBundle_show_submission', { 'registration_id': registration.id, 'submission_id': entity.id }) }}">{{ entity.talk.title }}</a></td>
             <td>{% if entity.dtcreated %}{{ entity.dtcreated|date('Y-m-d H:i:s') }}{% endif%}</td>
             <td>
-                        [ <a href="{{ path('CfpCfpBundle_edit_submission', { 'registration': registration.id, 'id': entity.id }) }}">edit</a> ]
+                        [ <a href="{{ path('CfpCfpBundle_edit_submission', { 'registration': registration.id, 'submission_id': entity.id }) }}">edit</a> ]
             </td>
         </tr>
     {% endfor %}

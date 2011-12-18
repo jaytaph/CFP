@@ -3,7 +3,7 @@
 {% block title %}Submission edit{% endblock %}
 
 {% block body %}
-<form action="{{ path('CfpCfpBundle_update_submission', { 'registration_id': registration.id, 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+<form action="{{ path('CfpCfpBundle_update_submission', { 'registration_id': registration.id, 'submission_id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
     {{ form_widget(edit_form) }}
     <p>
         <button type="submit">Edit</button>
@@ -17,7 +17,7 @@
         </a>
     </li>
     <li>
-        <form action="{{ path('CfpCfpBundle_delete_submission', { 'registration_id': registration.id, 'id': entity.id }) }}" method="post">
+        <form action="{{ path('CfpCfpBundle_delete_submission', { 'registration_id': registration.id, 'submission_id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}
             <button type="submit">Delete</button>
         </form>

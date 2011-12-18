@@ -196,7 +196,6 @@ class Conference
      */
     protected $registrations;
 
-
     /**
      * Get id
      *

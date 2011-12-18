@@ -22,19 +22,18 @@ class BiographyController extends Controller
 
     function showAction($id)
     {
-        // @TODO: Only the user and a "conference host" to which this user has submitted a talk to, can view
-
         $em = $this->getDoctrine()->getEntityManager();
         $biography = $em->getRepository('CfpUserBundle:Biography')->findOneById($id);
         if (!$biography) {
             throw $this->createNotFoundException('Unable to find this biography.');
         }
 
-        // Fetch current logged in user
-        $user = $this->get('security.context')->getToken()->getUser();
-        if ($biography->getOwner() != $user) {
-            throw $this->createNotFoundException('Unable to access this biography.');
-        }
+//        // @TODO: Only the user and a "conference host" to which this user has submitted a talk to, can view
+//        // Fetch current logged in user
+//        $user = $this->get('security.context')->getToken()->getUser();
+//        if ($biography->getOwner() != $user) {
+//            throw $this->createNotFoundException('Unable to access this biography.');
+//        }
 
 
         return $this->render('CfpUserBundle:Biography:show.html.twig', array(
