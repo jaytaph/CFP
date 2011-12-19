@@ -5,6 +5,7 @@
 {% block body %}
     {% include 'CfpUserBundle:Biography:partial_biography.html.twig' with {'biography': biography} %}
 
+    <br/>
     <div>
       [ <a href="{{ path('CfpUserBundle_edit_biography', { 'id': biography.id }) }}">Edit biography</a> ]
       [ <a href="{{ path('CfpUserBundle_show_my_biographies') }}">Back to the list</a> ]

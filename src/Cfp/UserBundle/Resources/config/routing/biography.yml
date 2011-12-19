@@ -19,7 +19,14 @@ CfpUserBundle_edit_biography:
         id: \d+
 
 CfpUserBundle_add_biography:
-    pattern:  /biography/new
+    pattern:  /biographies/new
     defaults: { _controller: CfpUserBundle:Biography:add }
     requirements:
         _method:  GET|POST
+
+CfpUserBundle_delete_biography:
+    pattern:  /biography/{id}/delete
+    defaults: { _controller: CfpUserBundle:Biography:delete }
+    requirements:
+        _method:  GET|POST
+        id: \d+

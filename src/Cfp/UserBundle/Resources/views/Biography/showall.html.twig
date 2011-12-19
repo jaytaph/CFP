@@ -11,11 +11,14 @@
         <tr>
             <th>Description</th>
             <th>Added</th>
+            <th>Action</th>
         </tr>
         {% for biography in biographies %}
         <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
             <td><a href="{{ path('CfpUserBundle_show_biography', { 'id': biography.id }) }}">{{ biography.description }}</a></td>
             <td>{{ biography.dtadded|date('F j, Y') }}</td>
+            <td>[ <a href="{{ path('CfpUserBundle_edit_biography', { 'id': biography.id }) }}">Edit</a> ] -
+                [ <a href="{{ path('CfpUserBundle_delete_biography', { 'id': biography.id }) }}">Delete</a> ]</td>
         </tr>
         {% endfor %}
     </table>

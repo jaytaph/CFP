@@ -137,7 +137,7 @@ class Registration
     /**
      * Get user
      *
-     * @return Cfp\UserBundle\Entity\User 
+     * @return Cfp\UserBundle\Entity\User
      */
     public function getUser()
     {

@@ -70,4 +70,3 @@ twig:
     form:
         resources:
             - 'IoFormBundle:Form:fields.html.twig'
-

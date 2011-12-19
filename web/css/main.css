@@ -75,6 +75,13 @@ form textarea { width: 500px; height: 150px; line-height: 26px; font-size: 20px;
 form input[type="submit"] { margin-left: 110px; width: 508px; line-height: 26px; font-size: 20px; min-height: 26px; }
 form ul li { color: #ff0000; margin-bottom: 5px; }
 
+h3 {
+    font-weight: bold;
+}
+
+article ul li {
+    margin-left: 20px;
+}
 
 table.list {
     color: #404040;
@@ -86,6 +93,9 @@ table.list {
     margin-top: 0px;
 }
 
+table.list th {
+    background: #e8e8e8;
+}
 
 table.list tr.even {
     background: #f8f8f8;
@@ -94,6 +104,9 @@ table.list tr.odd {
     background: #fff;
 }
 
+table.list tr.highlight {
+    background-color: #e0e0f0 !important;
+}
 
 
 table.list td {

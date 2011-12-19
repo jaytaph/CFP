@@ -18,6 +18,22 @@
             <link href="{{ asset('css/screen.css') }}" type="text/css" rel="stylesheet" />
         {% endblock %}
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+
+        <script type="text/javascript">
+        <!--
+        $(
+         function() {
+          $(".list tr").hover(
+           function () {
+             $(this).addClass("highlight");
+           }, function() {
+             $(this).removeClass("highlight");
+           })
+         }
+        )
+        //-->
+        </script>
+
     </head>
     <body>
 

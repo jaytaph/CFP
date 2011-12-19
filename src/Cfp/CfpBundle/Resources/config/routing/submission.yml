@@ -11,20 +11,20 @@ CfpCfpBundle_new_submission:
     defaults: { _controller: "CfpCfpBundle:Submission:new" }
 
 CfpCfpBundle_create_submission:
-    pattern:  /submissions/create
+    pattern:  /submission/create
     defaults: { _controller: "CfpCfpBundle:Submission:create" }
     requirements: { _method: post }
 
 CfpCfpBundle_edit_submission:
-    pattern:  =/submission/{submission_id}/edit
+    pattern:  /submission/{submission_id}/edit
     defaults: { _controller: "CfpCfpBundle:Submission:edit" }
 
 CfpCfpBundle_update_submission:
-    pattern:  =/submission/{submission_id}/update
+    pattern:  /submission/{submission_id}/update
     defaults: { _controller: "CfpCfpBundle:Submission:update" }
     requirements: { _method: post }
 
 CfpCfpBundle_delete_submission:
-    pattern:  =/submission/{submission_id}/delete
+    pattern:  /submission/{submission_id}/delete
     defaults: { _controller: "CfpCfpBundle:Submission:delete" }
     requirements: { _method: post }

@@ -56,7 +56,7 @@ class Talk
     }
 
     public function __toString() {
-        return $this->getTitle();
+        return ucfirst(strtolower($this->getType()))." : ".$this->getTitle();
     }
 
     

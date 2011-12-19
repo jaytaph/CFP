@@ -38,7 +38,6 @@ CfpConferenceBundle_create_conference:
     defaults: { _controller: "CfpConferenceBundle:Conference:create" }
     requirements:
         _method: POST
-        tag: \w+
 
 CfpConferenceBundle_edit_conference:
     pattern:  /conference/{tag}/edit

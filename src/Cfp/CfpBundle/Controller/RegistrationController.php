@@ -96,6 +96,8 @@ class RegistrationController extends Controller
      */
     public function createAction($tag)
     {
+        $currentUser = $this->get('security.context')->getToken()->getUser();
+
         $entity  = new Registration();
         $request = $this->getRequest();
         $form    = $this->createForm(new RegistrationType(), $entity);
@@ -116,6 +118,7 @@ class RegistrationController extends Controller
         if ($form->isValid()) {
             // Set correct conference
             $entity->setConference($conference);
+            $entity->setUser($currentUser);
 
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($entity);
@@ -124,11 +127,22 @@ class RegistrationController extends Controller
             // @TODO: Check if subject should be escaped...
             // Add email to user
             $message = \Swift_Message::newInstance()
-                ->setSubject('New CFP registration for ' . $entity->getRegistration()->getConference()->getName())
+                ->setSubject('New CFP registration for ' . $entity->getConference()->getName())
                 ->setFrom($this->container->getParameter('emails.contact_email'))
-                ->setTo($entity->GetUser()->getEmail())
+                ->setTo($entity->getUser()->getEmail())
                 ->setBody($this->renderView('CfpCfpBundle:Registration:submitEmail.txt.twig', array('entity' => $entity)));
             $this->get('mailer')->send($message);
+
+            // Email to all hosts
+            foreach ($entity->getconference()->getHosts() as $host) {
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('New CFP registration for ' . $entity->getConference()->getName())
+                    ->setFrom($this->container->getParameter('emails.contact_email'))
+                    ->setTo($host->getEmail())
+                    ->setBody($this->renderView('CfpCfpBundle:Registration:submitEmailHost.txt.twig', array('entity' => $entity)));
+                $this->get('mailer')->send($message);
+            }
+
 
             $this->get('session')->setFlash('notice', 'You have registered for CFP submissions!');
 

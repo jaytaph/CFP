@@ -7,11 +7,11 @@ CfpUserBundle_show_talk:
     defaults: { _controller: "CfpUserBundle:Talk:show" }
 
 CfpUserBundle_new_talk:
-    pattern:  /talk/new
+    pattern:  /talks/new
     defaults: { _controller: "CfpUserBundle:Talk:new" }
 
 CfpUserBundle_create_talk:
-    pattern:  /talk/create
+    pattern:  /talks/create
     defaults: { _controller: "CfpUserBundle:Talk:create" }
     requirements: { _method: post }
 

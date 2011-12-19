@@ -16,7 +16,7 @@
             <td>{{ conference.getRegistrationCount }} / {{ conference.getSubmissionCount }}</td>
             <td>
                 {% if cfp_is_open(conference) %}
-                    {% if conference.getSubmissionCount(app.user) == 0 %}
+                    {% if not conference.isRegistered(app.user) %}
                       [ <a href="{{ path('CfpCfpBundle_new_registration', {'tag': conference.tag}) }}">Register</a> ]
                     {% else %}
                       [ <a href="{{ path('CfpCfpBundle_new_registration', {'tag': conference.tag}) }}">Add new talk</a> ]

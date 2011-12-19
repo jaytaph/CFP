@@ -4,13 +4,21 @@
 
 {% block body %}
     <article class="conference">
-            <header>
-                <h2>{{ conference.name }}</h2>
-                <div class="date">{{ conference.dtstart|date('l, F j, Y') }} to {{ conference.dtend|date('l, F j, Y') }}</div>
-            </header>
+        <header>
+            <h2>{{ conference.name }}</h2>
+            <div class="date">{{ conference.dtstart|date('l, F j, Y') }} to {{ conference.dtend|date('l, F j, Y') }}</div>
+        </header>
+        <br/>
+
         <div>
             <h3 >Description:</h3>
             <p>{{ conference.description }}</p>
+        </div>
+
+        <div>
+            <h3 >Location:</h3>
+            <p>{{ google_map_container(map) }}</p>
+            {{ google_map_js(map) }}
         </div>
 
         <div>
@@ -32,11 +40,7 @@
             </ul>
         </div>
 
-        <div>
-            <h3 >Location:</h3>
-            <p>{{ google_map_container(map) }}</p>
-            {{ google_map_js(map) }}
-        </div>
+        <br/>
         
         <div>
         [ <a href="{{ path('CfpConferenceBundle_show_conferences_all') }}">Back to the list</a> ]
