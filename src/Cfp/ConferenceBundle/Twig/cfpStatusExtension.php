@@ -33,7 +33,7 @@ class cfpStatusExtension extends \Twig_Extension
                 if ($suffix <= 0) {
                     $suffix = "last day!";
                 } else {
-                    $suffix .= " days remaining until closing";
+                    $suffix .= " days";
                 }
 
                 $suffix = " (".$suffix.")";
@@ -49,7 +49,7 @@ class cfpStatusExtension extends \Twig_Extension
                 if ($suffix <= 0) {
                     $suffix = "tomorrow!";
                 } else {
-                    $suffix .= " days remaining until opening";
+                    $suffix .= " days";
                 }
                 $suffix = " (".$suffix.")";
             }

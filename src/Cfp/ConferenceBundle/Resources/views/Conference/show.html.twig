@@ -17,7 +17,7 @@
             <h3>Administrators:</h3>
             <ul>
             {% for admin in conference.admins %}
-            <li>{{ admin.username }}</li>
+            <li>[ <a href="#">{{ admin.username }}</a> ] </li>
             {% endfor %}
             </ul>
         </div>
@@ -27,7 +27,7 @@
 
             <ul>
             {% for host in conference.hosts %}
-            <li>{{ host.username }}</li>
+            <li>[ <a href="#">{{ host.username }}</a> ]</li>
             {% endfor %}
             </ul>
         </div>
@@ -51,9 +51,6 @@
         {% if conference.isHost(app.user) %}
         - [ <a href="{{ path('CfpConferenceBundle_conference_host', {'tag': conference.tag}) }}">Host</a> ]
         {% endif %}
-
-
-
         </div>
     </article>
 {% endblock %}

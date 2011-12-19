@@ -78,3 +78,7 @@
 [OrnicarGravatarBundle]
     git=http://github.com/ornicar/GravatarBundle.git
     target=/bundles/Ornicar/GravatarBundle
+
+[IoFormBundle]
+  git=git://github.com/ioalessio/IoFormBundle.git
+  target=/bundles/Io/FormBundle

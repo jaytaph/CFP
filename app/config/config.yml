@@ -65,3 +65,9 @@ fos_user:
     user_class: Cfp\UserBundle\Entity\User
 
 ornicar_gravatar: ~
+
+twig:
+    form:
+        resources:
+            - 'IoFormBundle:Form:fields.html.twig'
+

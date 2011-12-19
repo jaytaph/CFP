@@ -1,0 +1,37 @@
+    <table class="list">
+        <tr>
+            <th>Name</th>
+            <th>Conference start</th>
+            <th>Cfp start</th>
+            <th>Cfp status</th>
+            <th>Cfp Submissions</th>
+            <th>Action</th>
+        </tr>
+        {% for conference in conferences %}
+        <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
+            <td><a href="{{ path('CfpConferenceBundle_show_conference', { 'tag': conference.tag }) }}">{{ conference.name }}</a></td>
+            <td>{{ conference.dtstart|date('F j, Y') }}</td>
+            <td>{{ conference.cfpstart|date('F j, Y') }}</td>
+            <td>{{ cfp_status(conference, true) }}</td>
+            <td>{{ conference.getRegistrationCount }} / {{ conference.getSubmissionCount }}</td>
+            <td>
+                {% if cfp_is_open(conference) %}
+                    {% if conference.getSubmissionCount(app.user) == 0 %}
+                      [ <a href="{{ path('CfpCfpBundle_new_registration', {'tag': conference.tag}) }}">Register</a> ]
+                    {% else %}
+                      [ <a href="{{ path('CfpCfpBundle_new_registration', {'tag': conference.tag}) }}">Add new talk</a> ]
+                    {% endif %}
+                {% endif %}
+
+                {% if conference.isAdmin(app.user) %}
+                [ <a href="{{ path('CfpConferenceBundle_conference_admin', {'tag': conference.tag}) }}">Admin</a> ]
+                {% endif %}
+
+                {% if conference.isHost(app.user) %}
+                [ <a href="{{ path('CfpConferenceBundle_conference_host', {'tag': conference.tag}) }}">Host</a> ]
+                {% endif %}
+
+            </td>
+        </tr>
+        {% endfor %}
+    </table>

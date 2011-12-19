@@ -78,26 +78,6 @@ class User extends BaseUser
     }
 
     /**
-     * Add conferences
-     *
-     * @param Cfp\ConferenceBundle\Entity\Conference $conferences
-     */
-    public function addConference(\Cfp\ConferenceBundle\Entity\Conference $conferences)
-    {
-        $this->conferences[] = $conferences;
-    }
-
-    /**
-     * Get conferences
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getConferences()
-    {
-        return $this->conferences;
-    }
-
-    /**
      * Add registrations
      *
      * @param Cfp\CfpBundle\Entity\Registration $registrations

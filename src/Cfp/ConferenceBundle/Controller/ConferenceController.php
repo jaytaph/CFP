@@ -59,6 +59,7 @@ class ConferenceController extends Controller
         return $this->render('CfpConferenceBundle:Conference:index.html.twig', array(
             'conferences' => $conferences,
             'partial' => 'CfpConferenceBundle:Conference:partial_all.html.twig',
+            'addLink' => true,
         ));
     }
 
@@ -87,14 +88,12 @@ class ConferenceController extends Controller
     public function showUserConferencesAction() {
         $user = $this->get('security.context')->getToken()->getUser();
 
-        $conferences = $user->getConferences();
-
-//        $em = $this->getDoctrine()->getEntityManager();
-//        $conferences = $em->getRepository('CfpConferenceBundle:Conference')->findByUser($user);
+        $conferences = $user->getConferencesHost();
 
         return $this->render('CfpConferenceBundle:Conference:index.html.twig', array(
             'conferences' => $conferences,
             'partial' => 'CfpConferenceBundle:Conference:partial_my.html.twig',
+            'addLink' => true,
         ));
     }
 

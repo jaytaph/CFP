@@ -9,12 +9,13 @@ class ConferenceType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
+        // @TODO: It would be nice if we actually got a normal d/m/Y select with JQueryUI in it.
         $builder
             ->add('name')
-            ->add('dt_start')
-            ->add('dt_end')
-            ->add('cfp_start')
-            ->add('cfp_end')
+            ->add('dt_start', 'jquery_date', array('format' => 'dd/MM/y'))
+            ->add('dt_end', 'jquery_date', array('format' => 'dd/MM/y'))
+            ->add('cfp_start', 'jquery_date', array('format' => 'dd/MM/y'))
+            ->add('cfp_end', 'jquery_date', array('format' => 'dd/MM/y'))
             ->add('description')
             ->add('geo_long')
             ->add('geo_lat')

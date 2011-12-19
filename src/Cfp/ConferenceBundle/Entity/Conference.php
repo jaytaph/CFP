@@ -3,6 +3,7 @@
 
 namespace Cfp\ConferenceBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Cfp\ConferenceBundle\Repository\ConferenceRepository")
@@ -18,6 +19,8 @@ class Conference
     public function __construct()
     {
         $this->setDtCreated(new \DateTime());
+        $this->hosts = new ArrayCollection();
+        $this->admins = new ArrayCollection();
     }
 
     public function __toString() {
