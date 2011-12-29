@@ -41,6 +41,11 @@ class Talk
     protected $type;
 
     /**
+     * @ORM\Column(type="text")
+     */
+    protected $remark;
+
+    /**
      * @ORM\Column(type="string", length="250")
      */
     protected $slides_url;
@@ -49,6 +54,7 @@ class Talk
      * @ORM\Column(type="string", length="250")
      */
     protected $joindin_url;
+
 
     public function __construct()
     {
@@ -205,4 +211,24 @@ class Talk
         return rand(1,10);
     }
 
+
+    /**
+     * Set remark
+     *
+     * @param text $remark
+     */
+    public function setRemark($remark)
+    {
+        $this->remark = $remark;
+    }
+
+    /**
+     * Get remark
+     *
+     * @return text 
+     */
+    public function getRemark()
+    {
+        return $this->remark;
+    }
 }

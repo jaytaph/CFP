@@ -3,23 +3,26 @@
 {% block title %}Submission list{% endblock %}
 
 {% block body %}
-<h1>All submitted talks for {{ cfp.conference.name }} </h1>
+<h1>All submitted talks for {{ registration.conference.name }} </h1>
 
 <table class="list">
     <thead>
         <tr>
+            <th>&nbsp;</th>
             <th>Title</th>
             <th>Submitted</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-    {% for entity in entities %}
+    {% for submission in registration.submissions %}
         <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
-            <td><a href="{{ path('CfpCfpBundle_show_submission', { 'registration_id': registration.id, 'submission_id': entity.id }) }}">{{ entity.talk.title }}</a></td>
-            <td>{% if entity.dtcreated %}{{ entity.dtcreated|date('Y-m-d H:i:s') }}{% endif%}</td>
+            <td># {{ loop.index0 + 1 }}</td>
+            <td><a href="{{ path('CfpCfpBundle_show_submission', { 'registration_id': registration.id, 'submission_id': submission.id }) }}">{{ submission.talk.title }}</a></td>
+            <td>{% if submission.dtcreated %}{{ submission.dtcreated|date('Y-m-d H:i:s') }}{% endif%}</td>
             <td>
-                        [ <a href="{{ path('CfpCfpBundle_edit_submission', { 'registration': registration.id, 'submission_id': entity.id }) }}">edit</a> ]
+                [ <a href="{{ path('CfpCfpBundle_edit_submission', { 'registration_id': registration.id, 'submission_id': submission.id }) }}">edit</a> ]
+                [ <a href="{{ path('CfpCfpBundle_delete_submission', { 'registration_id': registration.id, 'submission_id': submission.id }) }}">revoke</a> ]
             </td>
         </tr>
     {% endfor %}
@@ -29,9 +32,7 @@
 
 <ul>
     <li>
-        <a href="{{ path('CfpCfpBundle_new_submission', {'registration_id': registration.id}) }}">
-            Create a new entry
-        </a>
+        [ <a href="{{ path('CfpCfpBundle_new_submission', {'registration_id': registration.id}) }}">Create a new entry</a> ]
     </li>
 </ul>
 {% endblock %}

@@ -5,6 +5,8 @@ app/console doctrine:generate:entities CfpConferenceBundle:Conference
 app/console doctrine:generate:entities CfpCfpBundle:Submission
 app/console doctrine:generate:entities CfpCfpBundle:Registration
 app/console doctrine:generate:entities CfpUserBundle:User
+app/console doctrine:generate:entities CfpUserBundle:Talk
+app/console doctrine:generate:entities CfpUserBundle:Biography
 
 app/console doctrine:schema:update --dump-sql
 

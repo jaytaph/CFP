@@ -3,6 +3,7 @@
 
 namespace Cfp\ConferenceBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Cfp\ConferenceBundle\Repository\ConferenceRepository")
@@ -18,6 +19,8 @@ class Conference
     public function __construct()
     {
         $this->setDtCreated(new \DateTime());
+        $this->hosts = new ArrayCollection();
+        $this->admins = new ArrayCollection();
     }
 
     public function __toString() {
@@ -53,6 +56,15 @@ class Conference
               $count += count($registration->getSubmissions());
         }
         return $count;
+    }
+
+    public function isRegistered(\Cfp\UserBundle\Entity\User $user = null) {
+        if ($user == null) return false;
+
+        foreach ($this->getRegistrations() as $registration) {
+            if ($registration->getUser() == $user) return true;
+        }
+        return false;
     }
 
     public function getRegistrationCount() {

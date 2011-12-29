@@ -58,7 +58,9 @@ class Conference
         return $count;
     }
 
-    public function isRegistered(\Cfp\UserBundle\Entity\User $user) {
+    public function isRegistered(\Cfp\UserBundle\Entity\User $user = null) {
+        if ($user == null) return false;
+
         foreach ($this->getRegistrations() as $registration) {
             if ($registration->getUser() == $user) return true;
         }

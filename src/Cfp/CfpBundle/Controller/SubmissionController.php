@@ -21,7 +21,7 @@ class SubmissionController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 //        $entities = $em->getRepository('CfpCfpBundle:Submission')->findByRegistration($registration_id);
-        $registration = $em->getRepository('CfpCfpBundle:Submission')->find($registration_id);
+        $registration = $em->getRepository('CfpCfpBundle:Registration')->find($registration_id);
 
         return $this->render('CfpCfpBundle:Submission:index.html.twig', array(
             'registration' => $registration,

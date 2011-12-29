@@ -22,6 +22,7 @@ Todo:
 [ ] When CFP is not open, we should not be allowed to add CFP. Also we should not add the Add CFP links?
 [ ] Talks should be COPIED, not linked when they are added as a submission
 [ ] FOSBundle layouts must be added
+[ ] We should be able to delete a talk directly from the index / overview
 
 Bugs & issues:
 ==============

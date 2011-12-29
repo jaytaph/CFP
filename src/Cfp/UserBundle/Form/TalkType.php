@@ -13,6 +13,7 @@ class TalkType extends AbstractType
             ->add('title')
             ->add('abstract')
             ->add('type', 'talktype')
+            ->add('remark')
             ->add('slides_url')
             ->add('joindin_url')
             ->add('owners')

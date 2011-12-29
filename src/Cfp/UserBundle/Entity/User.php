@@ -116,4 +116,14 @@ class User extends BaseUser
     {
         return $this->conferences_admin;
     }
+
+    /**
+     * Add conferences_host
+     *
+     * @param Cfp\ConferenceBundle\Entity\Conference $conferencesHost
+     */
+    public function addConference(\Cfp\ConferenceBundle\Entity\Conference $conferencesHost)
+    {
+        $this->conferences_host[] = $conferencesHost;
+    }
 }
