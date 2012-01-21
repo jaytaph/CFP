@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Cfp\UserBundle\Repository\TalkRepository")
  * @ORM\Table(name="talk")
  */
 class Talk

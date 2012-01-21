@@ -20,6 +20,7 @@ $loader->registerNamespaces(array(
     'Ivory'            => __DIR__.'/../vendor/bundles',
     'Ornicar'          => __DIR__.'/../vendor/bundles',
     'Io'               => __DIR__.'/../vendor/bundles',
+    'MakerLabs'        => __DIR__.'/../vendor/bundles',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',

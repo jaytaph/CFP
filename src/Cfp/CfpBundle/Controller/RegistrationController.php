@@ -68,8 +68,13 @@ class RegistrationController extends Controller
      */
     public function newAction($tag)
     {
+        $currentUser = $this->get('security.context')->getToken()->getUser();
+        if (! $currentUser) {
+            throw new AccessDeniedHttpException('Need to be logged in.');
+        }
+
         $entity = new Registration();
-        $form   = $this->createForm(new RegistrationType(), $entity);
+        $form   = $this->createForm(new RegistrationType($currentUser), $entity);
 
         $em = $this->getDoctrine()->getEntityManager();
         $conference = $em->getRepository('CfpConferenceBundle:Conference')->findOneByTag($tag);
@@ -97,10 +102,13 @@ class RegistrationController extends Controller
     public function createAction($tag)
     {
         $currentUser = $this->get('security.context')->getToken()->getUser();
+        if (! $currentUser) {
+            throw new AccessDeniedHttpException('Need to be logged in.');
+        }
 
         $entity  = new Registration();
         $request = $this->getRequest();
-        $form    = $this->createForm(new RegistrationType(), $entity);
+        $form    = $this->createForm(new RegistrationType($currentUser), $entity);
         $form->bindRequest($request);
 
         // Fetch conference

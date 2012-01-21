@@ -3,6 +3,8 @@
 namespace Cfp\CfpBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use MakerLabs\PagerBundle\Pager;
+use MakerLabs\PagerBundle\Adapter\DoctrineOrmAdapter;
 
 use Cfp\CfpBundle\Entity\Submission;
 use Cfp\CfpBundle\Form\SubmissionType;
@@ -20,7 +22,6 @@ class SubmissionController extends Controller
     public function indexAction($registration_id)
     {
         $em = $this->getDoctrine()->getEntityManager();
-//        $entities = $em->getRepository('CfpCfpBundle:Submission')->findByRegistration($registration_id);
         $registration = $em->getRepository('CfpCfpBundle:Registration')->find($registration_id);
 
         return $this->render('CfpCfpBundle:Submission:index.html.twig', array(

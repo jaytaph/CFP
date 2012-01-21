@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new Io\FormBundle\IoFormBundle(),
+            new MakerLabs\PagerBundle\MakerLabsPagerBundle(),
             new Cfp\UserBundle\CfpUserBundle(),
             new Cfp\ConferenceBundle\CfpConferenceBundle(),
             new Cfp\PageBundle\CfpPageBundle(),

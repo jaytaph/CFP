@@ -5,9 +5,9 @@ namespace Cfp\UserBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * BiographyRepository
+ * TalkRepository
  *
  */
-class BiographyRepository extends EntityRepository
+class TalkRepository extends EntityRepository
 {
 }

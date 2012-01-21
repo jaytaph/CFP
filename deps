@@ -82,3 +82,7 @@
 [IoFormBundle]
   git=git://github.com/ioalessio/IoFormBundle.git
   target=/bundles/Io/FormBundle
+
+[makerlabsPagerBundle]
+  git=git://github.com/makerlabs/PagerBundle.git
+  target=/bundles/MakerLabs/PagerBundle

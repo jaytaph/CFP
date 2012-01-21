@@ -19,9 +19,8 @@ class TalkController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entities = $em->getRepository('CfpUserBundle:Talk')->findAll();
+        $currentUser = $this->get('security.context')->getToken()->getUser();
+        $entities = $currentUser->getTalks();
 
         return $this->render('CfpUserBundle:Talk:index.html.twig', array(
             'entities' => $entities

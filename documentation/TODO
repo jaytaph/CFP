@@ -23,6 +23,7 @@ Todo:
 [ ] Talks should be COPIED, not linked when they are added as a submission
 [ ] FOSBundle layouts must be added
 [ ] We should be able to delete a talk directly from the index / overview
+[ ] Pagination
 
 Bugs & issues:
 ==============

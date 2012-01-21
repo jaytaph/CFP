@@ -42,6 +42,13 @@ class User extends BaseUser
     protected $conferences_admin;
 
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Cfp\UserBundle\Entity\Talk", mappedBy="owners")
+     * @ORM\JoinTable(name="talk_owners")
+     */
+    protected $talks;
+
+
     public function __construct()
     {
         parent::__construct();
@@ -125,5 +132,35 @@ class User extends BaseUser
     public function addConference(\Cfp\ConferenceBundle\Entity\Conference $conferencesHost)
     {
         $this->conferences_host[] = $conferencesHost;
+    }
+
+    /**
+     * Add talks
+     *
+     * @param Cfp\UserBundle\Entity\Talks $talks
+     */
+    public function addTalks(\Cfp\UserBundle\Entity\Talks $talks)
+    {
+        $this->talks[] = $talks;
+    }
+
+    /**
+     * Get talks
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getTalks()
+    {
+        return $this->talks;
+    }
+
+    /**
+     * Add talks
+     *
+     * @param Cfp\UserBundle\Entity\Talk $talks
+     */
+    public function addTalk(\Cfp\UserBundle\Entity\Talk $talks)
+    {
+        $this->talks[] = $talks;
     }
 }
